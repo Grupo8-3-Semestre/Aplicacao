@@ -25,6 +25,8 @@ abstract class AudioVisual {
         this.idadeIndicativa = idadeIndicativa;
     }
 
+    public abstract Double getTempoTotal();
+
     public String getNome() {
         return nome;
     }
