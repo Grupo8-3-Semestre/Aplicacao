@@ -29,21 +29,18 @@ public class UsuarioController {
     @PostMapping("/{email}/{senha}")
     public ResponseEntity<Usuario> autenticar(@PathVariable String email,
                                                  @PathVariable String senha,
-                                                 Usuario usuario) {
+                                                Usuario usuario) {
 
-        Optional<Usuario> byEmail = this.usuarioRepository.findByEmail(email);
-        Optional<Usuario> bySenha = this.usuarioRepository.findBySenha(senha);
+        Optional<Usuario> byEmailSenha = this.usuarioRepository.findByEmailAndSenha(email,senha);
 
-        if(byEmail.isPresent() && bySenha.isPresent()){
+        if(byEmailSenha.isPresent()){
+            Integer idUsuario = usuario.getId();
+            if (this.usuarioRepository.existsById(idUsuario)) {
+                usuario.setAutenticado(true);
 
-           Integer idUsuario =usuario.getId();
-            Usuario usuarioExiste= usuarioRepository.findById(idUsuario).orElse(null);
-            usuarioExiste.setAutenticado(true);
-
-           Usuario usuario1= this.usuarioRepository.save(usuarioExiste);
-            return ResponseEntity.status(202).body(usuario1);
-
-
+                Usuario usuario1 = this.usuarioRepository.save(usuario);
+                return ResponseEntity.status(202).body(usuario1);
+            }
         }
         return ResponseEntity.status(400).build();
     }
