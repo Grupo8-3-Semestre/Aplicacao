@@ -1,4 +1,6 @@
-package sptech.school.voveaplication;
+package sptech.school.voveaplication.service.usuario.dto;
+
+import sptech.school.voveaplication.domain.usuario.Usuario;
 
 import java.time.LocalDate;
 
@@ -6,15 +8,14 @@ public class UsuarioDTO {
     private Integer idDTO;
     private String usernameDTO;
     private String emailDTO;
-    private LocalDate dataNascDTO;
+//    private LocalDate dataNascDTO;
     private boolean autenticado;
 
     public UsuarioDTO(Usuario usuario) {
         this.idDTO = usuario.getId();
         this.usernameDTO = usuario.getUsername();
         this.emailDTO = usuario.getEmail();
-        this.dataNascDTO = usuario.getDataNasc();
-        this.autenticado = usuario.isAutenticado();
+//        this.dataNascDTO = usuario.getDataNasc();
     }
 
     public String getUsernameDTO() {
@@ -33,21 +34,14 @@ public class UsuarioDTO {
         this.emailDTO = emailDTO;
     }
 
-    public LocalDate getDataNascDTO() {
-        return dataNascDTO;
-    }
+//    public LocalDate getDataNascDTO() {
+//        return dataNascDTO;
+//    }
+//
+//    public void setDataNascDTO(LocalDate dataNascDTO) {
+//        this.dataNascDTO = dataNascDTO;
+//    }
 
-    public void setDataNascDTO(LocalDate dataNascDTO) {
-        this.dataNascDTO = dataNascDTO;
-    }
-
-    public boolean isAutenticado() {
-        return autenticado;
-    }
-
-    public void setAutenticado(boolean autenticado) {
-        this.autenticado = autenticado;
-    }
 
     public Integer getIdDTO() {
         return idDTO;

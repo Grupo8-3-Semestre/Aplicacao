@@ -1,4 +1,4 @@
-package sptech.school.voveaplication;
+package sptech.school.voveaplication.domain.usuario;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,19 +17,17 @@ public class Usuario {
 @GeneratedValue (strategy = GenerationType.IDENTITY) //auto increment
 
     private Integer id;
-    @NotBlank
-    @Size(min = 3, max = 32)
+//    @NotBlank
+//    @Size(min = 3, max = 32)
     private String username;
-    @NotBlank
-    @Email
+//    @NotBlank
+//    @Email
     private String email;
-    @NotBlank
-    @Size(min = 8, max = 255)
+//    @NotBlank
+//    @Size(min = 8, max = 255)
     private String senha;
-    @PastOrPresent
-    private LocalDate dataNasc;
-//    private List<AudioVisual> audioVisual;
-    private boolean autenticado;
+//    @PastOrPresent
+//    private LocalDate dataNasc;
 
     public String getUsername() {
         return username;
@@ -55,21 +53,14 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public LocalDate getDataNasc() {
-        return dataNasc;
-    }
+//    public LocalDate getDataNasc() {
+//        return dataNasc;
+//    }
+//
+//    public void setDataNasc(LocalDate dataNasc) {
+//        this.dataNasc = dataNasc;
+//    }
 
-    public void setDataNasc(LocalDate dataNasc) {
-        this.dataNasc = dataNasc;
-    }
-
-    public boolean isAutenticado() {
-        return autenticado;
-    }
-
-    public void setAutenticado(boolean autenticado) {
-        this.autenticado = autenticado;
-    }
 
     public Integer getId() {
         return id;
