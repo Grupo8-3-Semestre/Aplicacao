@@ -13,7 +13,7 @@ import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioToke
 import sptech.school.voveaplication.service.usuario.dto.UsuarioCriacaoDTO;
 import sptech.school.voveaplication.service.usuario.dto.UsuarioDTO;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

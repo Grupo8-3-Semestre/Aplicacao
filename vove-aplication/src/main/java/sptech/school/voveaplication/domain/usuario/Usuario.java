@@ -1,20 +1,18 @@
 package sptech.school.voveaplication.domain.usuario;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Size;
-import java.time.LocalDate;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
 
 
 @Entity
 public class Usuario {
 @Id
-@GeneratedValue (strategy = GenerationType.IDENTITY) //auto increment
+@GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
 
     private Integer id;
 //    @NotBlank
@@ -22,6 +20,7 @@ public class Usuario {
     private String username;
 //    @NotBlank
 //    @Email
+    @Schema(name= "email@dominio.com")
     private String email;
 //    @NotBlank
 //    @Size(min = 8, max = 255)

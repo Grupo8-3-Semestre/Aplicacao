@@ -1,5 +1,6 @@
 package sptech.school.voveaplication.service.usuario;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,7 +30,7 @@ public class UsuarioService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
-
+    @SecurityRequirement(name = "Bearer")
     public void criar(UsuarioCriacaoDTO usuarioCriacaoDto) {
         final Usuario novoUsuario = UsuarioMapper.of(usuarioCriacaoDto);
 
