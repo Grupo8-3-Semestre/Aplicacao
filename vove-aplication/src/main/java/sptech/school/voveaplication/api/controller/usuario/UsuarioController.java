@@ -1,6 +1,7 @@
 package sptech.school.voveaplication.api.controller.usuario;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class UsuarioController {
 
     @PostMapping
     @SecurityRequirement(name = "Bearer")
-    public ResponseEntity<Void> criar(@RequestBody UsuarioCriacaoDto usuarioCriacaoDto) {
+    public ResponseEntity<Void> criar(@RequestBody @Valid UsuarioCriacaoDto usuarioCriacaoDto) {
         this.usuarioService.criar(usuarioCriacaoDto);
         return ResponseEntity.status(201).build();
     }
@@ -40,23 +41,33 @@ public class UsuarioController {
     }
 
     @PutMapping("/id")
-    @SecurityRequirement(name = "Bearer")
-    public ResponseEntity<Void> atualizar(@RequestParam Long id,@RequestBody UsuarioCriacaoDto usuarioAtualizar){
+    public ResponseEntity<Void> atualizar(@RequestParam Long id,@RequestBody Usuario usuarioAtualizar) {
 
-        this.usuarioService.atualizar(1L, usuarioAtualizar);
-
+        this.usuarioService.atualizar(id, usuarioAtualizar);
         return ResponseEntity.status(200).build();
 
 
-//        Optional<Usuario> usuario = usuarioRepository.findById(id);
-//        if (usuario.isPresent()) {
-//            usuarioAtualizar.setId(id);
-//            Usuario usuariooSalvo = usuarioRepository.save(usuarioAtualizar);
-//            return ResponseEntity.status(200).body(usuariooSalvo);
-//        } else {
-//            return ResponseEntity.status(404).build();
-        }
 
 
     }
+
+    @DeleteMapping("/id")
+    public ResponseEntity<Void> deletar(@RequestParam Long id) {
+
+        this.usuarioService.deletar(id);
+        return ResponseEntity.status(204).build();
+
+
+    }
+
+
+    @GetMapping
+    public List<Usuario> listar(){
+        List<Usuario> usuarios= this.usuarioService.listar();
+return usuarios;
+    }
+
+
+
+}
 

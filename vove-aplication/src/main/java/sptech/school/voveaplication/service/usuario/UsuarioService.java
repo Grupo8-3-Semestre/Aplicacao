@@ -18,6 +18,7 @@ import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioToke
 import sptech.school.voveaplication.service.usuario.dto.UsuarioCriacaoDto;
 import sptech.school.voveaplication.service.usuario.dto.UsuarioMapper;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,21 +45,47 @@ public class UsuarioService {
     this.usuarioRepository.save(novoUsuario);
   }
   
-  public void  atualizar(Long id, UsuarioCriacaoDto usuarioCriacaoDto){
-    final UsuarioCriacaoDto novoUsuario = UsuarioMapper.atualizar(usuarioCriacaoDto);
-    String senhaCriptografada = passwordEncoder.encode(novoUsuario.getSenha());
-    novoUsuario.setSenha(senhaCriptografada);
+  public void  atualizar(Long id, Usuario usuarioAtualizar){
+    String senhaCriptografada = passwordEncoder.encode(usuarioAtualizar.getSenha());
+    usuarioAtualizar.setSenha(senhaCriptografada);
 
 
     Optional<Usuario> usuario = usuarioRepository.findById(id);
     if (usuario.isPresent()) {
-      usuarioCriacaoDto.setId(id);
-//      this.usuarioRepository.save(novoUsuario);
+      usuarioAtualizar.setId(id);
+      Usuario usuarioSalvo = usuarioRepository.save(usuarioAtualizar);
     } 
 
     
     
   }
+
+
+  public void  deletar(Long id){
+    Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
+    if (usuarioOpt.isPresent()) {
+      usuarioRepository.delete(usuarioOpt.get());
+    }
+
+
+
+
+  }
+
+  public List<Usuario> listar(){
+
+    List<Usuario> usuarios=this.usuarioRepository.findAll();
+
+    if (usuarios.isEmpty()) {
+      return usuarios;
+    }
+return usuarios;
+
+
+  }
+
+
+
 
   public UsuarioTokenDto autenticar(UsuarioLoginDto usuarioLoginDto) {
 
