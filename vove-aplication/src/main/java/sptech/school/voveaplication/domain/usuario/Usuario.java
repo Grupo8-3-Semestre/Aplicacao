@@ -1,10 +1,16 @@
 package sptech.school.voveaplication.domain.usuario;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.time.LocalDate;
 
@@ -15,10 +21,20 @@ public class Usuario {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotBlank
+  @Size(min = 3, max = 32)
+  @Schema(example= "João Pedro Leka")
   private String nome;
+  @NotBlank
+  @Email
+  @Schema(example= "email@dominio.com")
   private String email;
+  @NotBlank
+  @Size(min = 8, max = 255)
+  @Schema(example= "Senha complicada")
   private String senha;
-
+  @PastOrPresent
+  @Schema(name= "data de nascimento", example = "2001-12-04")
   private LocalDate dataNasc;
 
   public Long getId() {
