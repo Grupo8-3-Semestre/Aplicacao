@@ -102,4 +102,18 @@ public abstract class  AudioVisual {
     public void setOrcamento(long orcamento) {
         this.orcamento = orcamento;
     }
+
+    @Override
+    public String toString() {
+        return "AudioVisual{" +
+                "nome='" + nome + '\'' +
+                ", ondeAssistir='" + ondeAssistir + '\'' +
+                ", nota=" + nota +
+                ", dataLanc='" + dataLanc + '\'' +
+                ", diretor='" + diretor + '\'' +
+                ", genero='" + genero + '\'' +
+                ", idadeIndicativa=" + idadeIndicativa +
+                ", orcamento=" + orcamento +
+                '}';
+    }
 }

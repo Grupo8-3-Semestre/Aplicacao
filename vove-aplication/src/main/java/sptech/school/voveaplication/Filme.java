@@ -29,4 +29,13 @@ public class Filme extends AudioVisual {
     public void setDuracao(Integer duracao) {
         this.duracao = duracao;
     }
+
+    @Override
+    public String toString() {
+        return "Filme{" +
+                super.toString() +
+                "id=" + id +
+                ", duracao=" + duracao +
+                '}';
+    }
 }
