@@ -1,5 +1,7 @@
 package sptech.school.voveaplication;
 
+import info.movito.themoviedbapi.model.Genre;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,20 +10,21 @@ public abstract class  AudioVisual {
 
     private String nome;
     private String ondeAssistir;
-    private Integer nota;
-    private LocalDate dataLanc;
-    private List<Elenco> personagens;
+    private Float nota;
+    private String dataLanc;
+//    private List<Elenco> personagens;
     private String diretor;
     private String genero;
     private Integer idadeIndicativa;
-    private Integer orcamento;
+    private long orcamento;
 
-    public AudioVisual(String nome, String ondeAssistir, Integer nota, LocalDate dataLanc, String diretor, String genero, Integer idadeIndicativa, Integer orcamento) {
+    public AudioVisual(String nome, String ondeAssistir, Float nota, String dataLanc,
+                       String diretor, String genero, Integer idadeIndicativa, long orcamento) {
         this.nome = nome;
         this.ondeAssistir = ondeAssistir;
         this.nota = nota;
         this.dataLanc = dataLanc;
-        this.personagens = new ArrayList<>();
+//        this.personagens = personagens;
         this.diretor = diretor;
         this.genero = genero;
         this.idadeIndicativa = idadeIndicativa;
@@ -44,29 +47,29 @@ public abstract class  AudioVisual {
         this.ondeAssistir = ondeAssistir;
     }
 
-    public Integer getNota() {
+    public Float getNota() {
         return nota;
     }
 
-    public void setNota(Integer nota) {
+    public void setNota(Float nota) {
         this.nota = nota;
     }
 
-    public LocalDate getDataLanc() {
+    public String getDataLanc() {
         return dataLanc;
     }
 
-    public void setDataLanc(LocalDate dataLanc) {
+    public void setDataLanc(String dataLanc) {
         this.dataLanc = dataLanc;
     }
 
-    public List<Elenco> getPersonagens() {
-        return personagens;
-    }
+//    public List<Elenco> getPersonagens() {
+//        return personagens;
+//    }
 
-    public void setPersonagens(List<Elenco> personagens) {
-        this.personagens = personagens;
-    }
+//    public void setPersonagens(List<Elenco> personagens) {
+//        this.personagens = personagens;
+//    }
 
     public String getDiretor() {
         return diretor;
@@ -92,11 +95,11 @@ public abstract class  AudioVisual {
         this.idadeIndicativa = idadeIndicativa;
     }
 
-    public Integer getOrcamento() {
+    public long getOrcamento() {
         return orcamento;
     }
 
-    public void setOrcamento(Integer orcamento) {
+    public void setOrcamento(long orcamento) {
         this.orcamento = orcamento;
     }
 }
