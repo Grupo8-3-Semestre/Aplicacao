@@ -1,19 +1,17 @@
 package sptech.school.voveaplication.api.controller.usuario;
 
-import org.aspectj.weaver.patterns.ReferencePointcut;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sptech.school.voveaplication.domain.repository.UsuarioRepository;
 import sptech.school.voveaplication.domain.usuario.Usuario;
+import sptech.school.voveaplication.domain.usuario.repository.UsuarioRepository;
 import sptech.school.voveaplication.service.usuario.UsuarioService;
-import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioLoginDTO;
-import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioTokenDTO;
-import sptech.school.voveaplication.service.usuario.dto.UsuarioCriacaoDTO;
-import sptech.school.voveaplication.service.usuario.dto.UsuarioDTO;
+import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioDetalhesDto;
+import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioLoginDto;
+import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioTokenDto;
+import sptech.school.voveaplication.service.usuario.dto.UsuarioCriacaoDto;
 
-import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,83 +19,44 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping("/criar")
-    public ResponseEntity<Void> cadastrar(@RequestBody UsuarioCriacaoDTO novoUsuario) {
+    private UsuarioRepository usuarioRepository;
 
-        this.usuarioService.criar(novoUsuario);
+    @PostMapping
+    @SecurityRequirement(name = "Bearer")
+    public ResponseEntity<Void> criar(@RequestBody UsuarioCriacaoDto usuarioCriacaoDto) {
+        this.usuarioService.criar(usuarioCriacaoDto);
         return ResponseEntity.status(201).build();
-
-//        Usuario usuarioCadastrado = this.usuarioRepository.save(novoUsuario);
-//        UsuarioDTO userDTO = new UsuarioDTO(usuarioCadastrado);
-//
-//        return ResponseEntity.status(201).body(userDTO);
     }
 
-//    @PostMapping("/{email}/{senha}")
-//    public ResponseEntity<Usuario> autenticar(@PathVariable String email,
-//                                                 @PathVariable String senha,
-//                                                Usuario usuario) {
-//
-//        Optional<Usuario> byEmailSenha = this.usuarioRepository.findByEmailAndSenha(email,senha);
-//
-//        if(byEmailSenha.isPresent()){
-//            Integer idUsuario = usuario.getId();
-//            if (this.usuarioRepository.existsById(idUsuario)) {
-//                usuario.setAutenticado(true);
-//
-//                Usuario usuario1 = this.usuarioRepository.save(usuario);
-//                return ResponseEntity.status(202).body(usuario1);
-//            }
-//        }
-//        return ResponseEntity.status(400).build();
-//    }
-
-    @GetMapping
-    public ResponseEntity<List<UsuarioDTO>> listar(){
-        List<Usuario> usuarios = usuarioRepository.findAll();
-
-        List<UsuarioDTO> usuarioResposta = this.usuarioRepository.findAll()
-                .stream()
-                .map(UsuarioDTO::new)
-                .collect(Collectors.toList());
-
-        if(usuarios.isEmpty()){
-            return ResponseEntity.status(204).build();
-        }
-        return ResponseEntity.status(200).body(usuarioResposta);
-    }
     @PostMapping("/login")
-    public ResponseEntity<UsuarioTokenDTO> login(@RequestBody UsuarioLoginDTO usuarioLoginDTO){
-        UsuarioTokenDTO usuarioToken = this.usuarioService.autenticar(usuarioLoginDTO);
-        return ResponseEntity.status(200).body(usuarioToken);
+    public ResponseEntity<UsuarioTokenDto> login(@RequestBody UsuarioLoginDto usuarioLoginDto) {
+        UsuarioTokenDto usuarioTokenDto = this.usuarioService.autenticar(usuarioLoginDto);
+
+        return ResponseEntity.status(200).body(usuarioTokenDto);
     }
 
-//    @DeleteMapping("/{email}/{senha}")
-//    public ResponseEntity<String> deletar(@PathVariable String email,
-//                                          @PathVariable String senha) {
-//
-//        if (this.usuarioRepository.existsByEmail(email) && this.usuarioRepository.existsBySenha(senha)) {
-//            this.usuarioRepository.deleteByEmail(email);
-//            return ResponseEntity.status(204).build();
-//        }
-//        return ResponseEntity.status(404).build();
-//    }
-//
-//    @DeleteMapping("/{email}")
-//    public ResponseEntity<String> logoff(@PathVariable String email,
-//                                              Usuario usuario) {
-//
-//        Optional<Usuario> byEmail = this.usuarioRepository.findByEmail(email);
-//
-//        if(byEmail.isPresent()){
-//            usuario.setAutenticado(false);
-//            return ResponseEntity.status(202).body(String.format("Logoff do usuario "+ usuario.getUsername() + "concluido!"));
-//        }
-//        return ResponseEntity.status(400).body(String.format("Usuário NÃO está autenticado"));
-//    }
-}
+    @PutMapping("/id")
+    @SecurityRequirement(name = "Bearer")
+    public ResponseEntity<Void> atualizar(@RequestParam Long id,@RequestBody UsuarioCriacaoDto usuarioAtualizar){
+
+        this.usuarioService.atualizar(1L, usuarioAtualizar);
+
+        return ResponseEntity.status(200).build();
+
+
+//        Optional<Usuario> usuario = usuarioRepository.findById(id);
+//        if (usuario.isPresent()) {
+//            usuarioAtualizar.setId(id);
+//            Usuario usuariooSalvo = usuarioRepository.save(usuarioAtualizar);
+//            return ResponseEntity.status(200).body(usuariooSalvo);
+//        } else {
+//            return ResponseEntity.status(404).build();
+        }
+
+
+    }
+

@@ -1,6 +1,4 @@
-package sptech.school.voveaplication.api.controller.usuario.configuration.security;
-
-
+package sptech.school.voveaplication.api.configuration.security;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

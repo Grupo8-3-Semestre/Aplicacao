@@ -1,7 +1,6 @@
-package sptech.school.voveaplication.api.controller.usuario.configuration.security;
+package sptech.school.voveaplication.api.configuration.security;
 
 import io.jsonwebtoken.ExpiredJwtException;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,13 +12,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
-import sptech.school.voveaplication.api.controller.usuario.configuration.security.jwt.GerenciadorTokenJwt;
+import sptech.school.voveaplication.api.configuration.security.jwt.GerenciadorTokenJwt;
 import sptech.school.voveaplication.service.usuario.autenticacao.AutenticacaoService;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class AutenticacaoFilter extends OncePerRequestFilter {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(AutenticacaoFilter.class);
 
     private final AutenticacaoService autenticacaoService;

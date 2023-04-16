@@ -1,4 +1,4 @@
-package sptech.school.voveaplication.api.controller.usuario.configuration.security;
+package sptech.school.voveaplication.api.configuration.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,8 +17,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
-import sptech.school.voveaplication.api.controller.usuario.configuration.security.jwt.GerenciadorTokenJwt;
+import sptech.school.voveaplication.api.configuration.security.jwt.GerenciadorTokenJwt;
 import sptech.school.voveaplication.service.usuario.autenticacao.AutenticacaoService;
+
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,19 +37,18 @@ public class SecurityConfiguracao {
     private AutenticacaoEntryPoint autenticacaoJwtEntryPoint;
 
     private static final AntPathRequestMatcher[] URLS_PERMITIDAS = {
+            new AntPathRequestMatcher("/swagger-ui/**"),
+            new AntPathRequestMatcher("/swagger-ui.html"),
             new AntPathRequestMatcher("/swagger-resources"),
             new AntPathRequestMatcher("/swagger-resources/**"),
             new AntPathRequestMatcher("/configuration/ui"),
             new AntPathRequestMatcher("/configuration/security"),
-            new AntPathRequestMatcher("/swagger-ui.html"),
-            new AntPathRequestMatcher("/webjars/**"),
-            new AntPathRequestMatcher("/v3/api-docs/**"),
             new AntPathRequestMatcher("/api/public/**"),
             new AntPathRequestMatcher("/api/public/authenticate"),
+            new AntPathRequestMatcher("/webjars/**"),
+            new AntPathRequestMatcher("/v3/api-docs/**"),
             new AntPathRequestMatcher("/actuator/*"),
-            new AntPathRequestMatcher("/swagger-ui/**"),
             new AntPathRequestMatcher("/usuarios/login/**"),
-            new AntPathRequestMatcher("/usuarios/criar/**"),
             new AntPathRequestMatcher("/h2-console/**")
     };
 
@@ -62,8 +62,7 @@ public class SecurityConfiguracao {
                 .and()
                 .csrf()
                 .disable()
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(URLS_PERMITIDAS)
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers(URLS_PERMITIDAS)
                         .permitAll()
                         .anyRequest()
                         .authenticated()

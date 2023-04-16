@@ -1,4 +1,4 @@
-package sptech.school.voveaplication.api.controller.usuario.configuration.security.jwt;
+package sptech.school.voveaplication.api.configuration.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

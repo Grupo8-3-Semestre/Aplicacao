@@ -1,71 +1,63 @@
 package sptech.school.voveaplication.domain.usuario;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
-
+import java.time.LocalDate;
 
 @Entity
 public class Usuario {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
 
-    private Integer id;
-//    @NotBlank
-//    @Size(min = 3, max = 32)
-    private String username;
-//    @NotBlank
-//    @Email
-    @Schema(name= "email@dominio.com")
-    private String email;
-//    @NotBlank
-//    @Size(min = 8, max = 255)
-    private String senha;
-//    @PastOrPresent
-//    private LocalDate dataNasc;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public String getUsername() {
-        return username;
-    }
+  private String nome;
+  private String email;
+  private String senha;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  private LocalDate dataNasc;
 
-    public String getEmail() {
-        return email;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getSenha() {
-        return senha;
-    }
+  public String getNome() {
+    return nome;
+  }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
 
-//    public LocalDate getDataNasc() {
-//        return dataNasc;
-//    }
-//
-//    public void setDataNasc(LocalDate dataNasc) {
-//        this.dataNasc = dataNasc;
-//    }
+  public LocalDate getDataNasc() {
+    return dataNasc;
+  }
 
+  public void setDataNasc(LocalDate dataNasc) {
+    this.dataNasc = dataNasc;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getSenha() {
+    return senha;
+  }
+
+  public void setSenha(String senha) {
+    this.senha = senha;
+  }
 }
