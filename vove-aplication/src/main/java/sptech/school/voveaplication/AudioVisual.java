@@ -15,11 +15,11 @@ public abstract class  AudioVisual {
 //    private List<Elenco> personagens;
     private String diretor;
     private String genero;
-    private Integer idadeIndicativa;
+    private String idadeIndicativa;
     private long orcamento;
 
     public AudioVisual(String nome, String ondeAssistir, Float nota, String dataLanc,
-                       String diretor, String genero, Integer idadeIndicativa, long orcamento) {
+                       String diretor, String genero, String idadeIndicativa, long orcamento) {
         this.nome = nome;
         this.ondeAssistir = ondeAssistir;
         this.nota = nota;
@@ -87,11 +87,11 @@ public abstract class  AudioVisual {
         this.genero = genero;
     }
 
-    public Integer getIdadeIndicativa() {
+    public String getIdadeIndicativa() {
         return idadeIndicativa;
     }
 
-    public void setIdadeIndicativa(Integer idadeIndicativa) {
+    public void setIdadeIndicativa(String idadeIndicativa) {
         this.idadeIndicativa = idadeIndicativa;
     }
 

@@ -6,7 +6,7 @@ public class Serie extends AudioVisual{
     private Integer qtdTotalEps;
     private Integer qtdTemporada;
 
-    public Serie(String nome, String ondeAssistir, Float nota, String dataLanc, String diretor, String genero, Integer idadeIndicativa, long orcamento, Integer qtdTotalEps, Integer qtdTemporada) {
+    public Serie(String nome, String ondeAssistir, Float nota, String dataLanc, String diretor, String genero, String idadeIndicativa, long orcamento, Integer qtdTotalEps, Integer qtdTemporada) {
         super(nome, ondeAssistir, nota, dataLanc, diretor, genero, idadeIndicativa, orcamento);
         this.qtdTotalEps = qtdTotalEps;
         this.qtdTemporada = qtdTemporada;
