@@ -8,8 +8,8 @@ public class Filme extends AudioVisual {
     public Integer id;
     private Integer duracao;
 
-    public Filme(String nome, String ondeAssistir, Float nota, String dataLanc, String diretor, String genero, String idadeIndicativa, long orcamento, Integer id, Integer duracao) {
-        super(nome, ondeAssistir, nota, dataLanc, diretor, genero, idadeIndicativa, orcamento);
+    public Filme(String nome, String ondeAssistir, Float nota, String dataLanc, String diretor, String genero, Number popularidade, String idadeIndicativa, long orcamento, Integer id, Integer duracao) {
+        super(nome, ondeAssistir, nota, dataLanc, diretor, genero, popularidade, idadeIndicativa, orcamento);
         this.id = id;
         this.duracao = duracao;
     }
@@ -33,9 +33,9 @@ public class Filme extends AudioVisual {
     @Override
     public String toString() {
         return "Filme{" +
-                super.toString() +
                 "id=" + id +
                 ", duracao=" + duracao +
-                '}';
+                "} " + super.toString();
     }
 }
+

@@ -15,24 +15,33 @@ public abstract class  AudioVisual {
 //    private List<Elenco> personagens;
     private String diretor;
     private String genero;
+//    private String sinopse;
+    private Number popularidade;
     private String idadeIndicativa;
     private long orcamento;
 
-    public AudioVisual(String nome, String ondeAssistir, Float nota, String dataLanc,
-                       String diretor, String genero, String idadeIndicativa, long orcamento) {
+    public AudioVisual(String nome, String ondeAssistir, Float nota, String dataLanc, String diretor, String genero, Number popularidade, String idadeIndicativa, long orcamento) {
         this.nome = nome;
         this.ondeAssistir = ondeAssistir;
         this.nota = nota;
         this.dataLanc = dataLanc;
-//        this.personagens = personagens;
         this.diretor = diretor;
         this.genero = genero;
+        this.popularidade = popularidade;
         this.idadeIndicativa = idadeIndicativa;
         this.orcamento = orcamento;
     }
 
     public String getNome() {
         return nome;
+    }
+
+    public Number getPopularidade() {
+        return popularidade;
+    }
+
+    public void setPopularidade(Number popularidade) {
+        this.popularidade = popularidade;
     }
 
     public void setNome(String nome) {
@@ -112,8 +121,10 @@ public abstract class  AudioVisual {
                 ", dataLanc='" + dataLanc + '\'' +
                 ", diretor='" + diretor + '\'' +
                 ", genero='" + genero + '\'' +
-                ", idadeIndicativa=" + idadeIndicativa +
+                ", popularidade=" + popularidade +
+                ", idadeIndicativa='" + idadeIndicativa + '\'' +
                 ", orcamento=" + orcamento +
                 '}';
     }
 }
+

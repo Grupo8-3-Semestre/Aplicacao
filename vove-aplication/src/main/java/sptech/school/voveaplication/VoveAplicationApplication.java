@@ -172,6 +172,7 @@ return null;
 					JSONObject provider = flatrate.getJSONObject(i);
 					String providerName = provider.getString("provider_name");
 					String providerLogo = provider.getString("logo_path");
+					System.out.println(provider);
 					System.out.println("Nome do provedor: " + providerName);
 
 					System.out.println("Logo do provedor: https://image.tmdb.org/t/p/original" + providerLogo);
@@ -198,11 +199,12 @@ return null;
 				getOndeAssistir(312221),
 				tmdbMovies.getMovie(312221,"pt-br").getVoteAverage(),
 				tmdbMovies.getMovie(312221,"pt-br").getReleaseDate(),
-				  getDiretor("312221"),
+				getDiretor("312221"),
 				getGenero(312221),
+				tmdbMovies.getMovie(312221,"pt-br").getPopularity(),
 				getIdade(312221),
 				tmdbMovies.getMovie(312221,"pt-br").getBudget(),
-				1,
+				tmdbMovies.getMovie(312221,"pt-br").getId(),
 				tmdbMovies.getMovie(312221,"pt-br").getRuntime()));
 
 		listaFilme.exibe();
