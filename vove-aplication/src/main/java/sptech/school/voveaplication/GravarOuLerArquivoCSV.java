@@ -1,16 +1,23 @@
 package sptech.school.voveaplication;
 
+import info.movito.themoviedbapi.model.MovieDb;
+import sptech.school.voveaplication.domain.arquivo.Arquivo;
+import sptech.school.voveaplication.domain.arquivo.repository.ArquivoRepository;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Formatter;
 import java.util.FormatterClosedException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class GravarOuLerArquivoCSV {
-    public static void gravaArquivoCsv(ListaObj<Filme> lista, String nomeArq) {
+    private ArquivoRepository arquivoRepository;
+
+    public void gravaArquivoCsv(ListaObj<MovieDb> lista, String nomeArq) {
         FileWriter arq = null;
         Formatter saida = null;
         Boolean deuRuim = false;
@@ -30,12 +37,13 @@ public class GravarOuLerArquivoCSV {
         // Bloco try-catch para gravar o arquivo
         try {
             for (int i=0; i < lista.getTamanho(); i++) {
-                Filme filme = lista.getElemento(i);
-                saida.format("%d;%s;%s;%d;%d\n",filme.getId(),
-                        filme.getNome(),
-                        filme.getDiretor(),
-                        filme.getIdadeIndicativa(),
-                        filme.getOrcamento());
+                MovieDb filme = lista.getElemento(i);
+                saida.format("%d,%s;%s;%.2f;%s\n",
+                        filme.getId(),
+                        filme.getTitle(),
+                        filme.getReleaseDate(),
+                        filme.getPopularity(),
+                        filme.getOriginalLanguage());
             }
         }
         catch (FormatterClosedException erro) {
@@ -55,9 +63,13 @@ public class GravarOuLerArquivoCSV {
                 System.exit(1);
             }
         }
+
+
+
+
     }
 
-    public static void leArquivoCsv(String nomeArq) {
+    public void leArquivoCsv(String nomeArq) {
         FileReader arq = null;
         Scanner entrada = null;
         Boolean deuRuim = false;

@@ -1,2 +1,73 @@
-package sptech.school.voveaplication;public class FilmeController {
-}
+package sptech.school.voveaplication;
+
+
+import info.movito.themoviedbapi.TmdbApi;
+import info.movito.themoviedbapi.model.MovieDb;
+import info.movito.themoviedbapi.model.core.MovieResultsPage;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
+import sptech.school.voveaplication.domain.arquivo.Arquivo;
+import sptech.school.voveaplication.domain.arquivo.repository.ArquivoRepository;
+
+import javax.naming.directory.SearchResult;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.List;
+
+@Tag(name = "Filmes", description = "Requisicoes relacionadas a filmes")
+@RestController
+@RequestMapping("/filmes")
+public class FilmeController {
+    private ArquivoRepository arquivoRepository;
+
+    private Path diretorioBase = Path.of(System.getProperty("java.io.tmpdir") + "/arquivos");
+
+    @GetMapping("/popular")
+    public ListaObj<MovieDb> filmesPopulares(MultipartFile file){
+        GravarOuLerArquivoCSV csv = new GravarOuLerArquivoCSV();
+
+        TmdbApi tmdbApi = new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f");
+
+        MovieResultsPage movieResults = tmdbApi.getMovies().getPopularMovies("pt-br", 1);
+
+        MovieDb[] movies = movieResults.getResults().toArray(new MovieDb[0]);
+
+        for (int i = 0; i < movies.length - 1; i++) {
+            int aux = i;
+            for (int j = i + 1; j < movies.length; j++) {
+                if (movies[j].getPopularity() > movies[aux].getPopularity()) {
+                    aux = j;
+                }
+            }
+            MovieDb temp = movies[aux];
+            movies[aux] = movies[i];
+            movies[i] = temp;
+        }
+
+        ListaObj<MovieDb> popularMovies = new ListaObj<>(6);
+        for (int i = 0; i < 6; i++) {
+
+            popularMovies.adiciona(movies[i]);
+        }
+csv.gravaArquivoCsv(popularMovies,"filmes_populares");
+
+
+        
+        
+        
+        return popularMovies;
+
+
+    }
+
+
+
+    }
+
+

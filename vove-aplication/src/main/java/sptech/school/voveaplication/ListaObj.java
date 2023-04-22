@@ -1,5 +1,7 @@
 package sptech.school.voveaplication;
 
+import info.movito.themoviedbapi.model.MovieDb;
+
 public class ListaObj<T> {
 
     // Atributos
@@ -19,7 +21,7 @@ public class ListaObj<T> {
     }
     public void exibe() {
         if (nroElem == 0) {
-            System.out.println("\nA lista estÃ¡ vazia.");
+            System.out.println("\nA lista está vazia.");
         }
         else {
             System.out.println("\nElementos da lista:");
@@ -67,6 +69,18 @@ public class ListaObj<T> {
 
     public void limpa() {
         nroElem = 0;
+    }
+
+
+
+    public  void set(int index, T value) {
+        try {
+            vetor[index] = value;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("Índice fora do intervalo.");
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException("Tipo inválido para o elemento da lista.");
+        }
     }
 }
 

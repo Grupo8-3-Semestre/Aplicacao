@@ -1,6 +1,5 @@
 package sptech.school.voveaplication;
 
-import com.uwetrottmann.tmdb2.entities.Movie;
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.model.Genre;
@@ -8,6 +7,9 @@ import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.Video;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,10 +19,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-
-public class Tmdb {
+@RestController
+@RequestMapping("/avaliar")
+    public class TmdbController {
     private TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
 
+    @GetMapping("diretor/{moveId}")
     public static String getDiretor(String movieId) throws IOException {
         String apiKey = "d34024db77b2cdff5b20917cc5ddae3f";
         String url = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + apiKey + "&append_to_response=credits";
@@ -53,6 +57,7 @@ public class Tmdb {
 
     }
 
+    @GetMapping("genero/{moveId}")
     public static String getGenero(int movieId) throws IOException {
         String apiKey = "d34024db77b2cdff5b20917cc5ddae3f";
         TmdbMovies movies = new TmdbApi(apiKey).getMovies();
@@ -67,7 +72,7 @@ public class Tmdb {
 
     }
 
-
+    @GetMapping("classificacao-indicativa/{moveId}")
     public static String getIdade(int movieId) throws IOException {
 
 
@@ -132,10 +137,8 @@ public class Tmdb {
 
     }
 
-
-
+    @GetMapping("onde-assistir/{moveId}")
     public static String getOndeAssistir(int movieId) throws IOException {
-
         String apiKey = "d34024db77b2cdff5b20917cc5ddae3f";
 
         // Faz a requisição à API do TMDB e obtém a resposta com a lista de provedores de streaming
@@ -178,14 +181,14 @@ public class Tmdb {
         }
         return null;
     }
-
+    @GetMapping("nome/{moveId}")
     public static String getNome(int movieId) throws IOException {
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
 
          return tmdbMovies.getMovie(movieId,"pt-br").getTitle();
 
     }
-
+    @GetMapping("votos/{moveId}")
     public static double getVotos(int movieId) throws IOException {
 
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
@@ -194,7 +197,7 @@ public class Tmdb {
 
     }
 
-
+    @GetMapping("lancamento/{moveId}")
     public static String getData(int movieId) throws IOException {
 
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
@@ -205,7 +208,7 @@ public class Tmdb {
     }
 
 
-
+    @GetMapping("popularidade/{moveId}")
     public static Number getPopularidade(int movieId) throws IOException {
 
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
@@ -214,6 +217,7 @@ public class Tmdb {
 
 
     }
+    @GetMapping("orcamento/{moveId}")
     public static long getOrcamento(int movieId) throws IOException {
 
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
@@ -224,7 +228,7 @@ public class Tmdb {
     }
 
 
-
+    @GetMapping("id-filme/{moveId}")
     public static Integer getId(int movieId) throws IOException {
 
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
@@ -233,7 +237,7 @@ public class Tmdb {
 
 
     }
-
+    @GetMapping("duracao/{moveId}")
     public static Integer getTempo(int movieId) throws IOException {
 
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
@@ -242,6 +246,8 @@ public class Tmdb {
 
 
     }
+
+    @GetMapping("sinopse/{moveId}")
     public static String getSinopse(int movieId) throws IOException {
 
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
@@ -251,7 +257,7 @@ public class Tmdb {
 
     }
 
-
+    @GetMapping("trailer/{moveId}")
     public static String getTrailer(int movieId) throws IOException {
         TmdbApi tmdbApi = new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f");
 
@@ -261,9 +267,14 @@ public class Tmdb {
                 .filter(video -> video.getType().equals("Trailer"))
                 .findFirst()
                 .orElse(null);
+        String trailerUrl="";
 
 
+        if (trailer != null) {
+          return trailerUrl = "https://www.youtube.com/watch?v=" + trailer.getKey();
+        }
 
+       return "Não possuí trailer";
     }
 
 }

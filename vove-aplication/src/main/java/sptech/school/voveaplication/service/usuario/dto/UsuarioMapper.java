@@ -13,6 +13,7 @@ public class UsuarioMapper {
     usuario.setNome(usuarioCriacaoDto.getNome());
     usuario.setSenha(usuarioCriacaoDto.getSenha());
     usuario.setDataNasc(usuarioCriacaoDto.getDataNasc());
+//    usuario.setFilmeLista(usuarioCriacaoDto.getFilmeLista());
 
     return usuario;
   }

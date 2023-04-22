@@ -1,5 +1,8 @@
 package sptech.school.voveaplication.service.usuario.dto;
 
+import sptech.school.voveaplication.Filme;
+import sptech.school.voveaplication.ListaObj;
+
 import java.time.LocalDate;
 
 public class UsuarioCriacaoDto {
@@ -12,6 +15,9 @@ public class UsuarioCriacaoDto {
 
   private String senha;
   private LocalDate dataNasc;
+
+  private ListaObj<Filme> filmeLista;
+
 
   public String getNome() {
     return nome;
@@ -51,5 +57,13 @@ public class UsuarioCriacaoDto {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public ListaObj<Filme> getFilmeLista() {
+    return filmeLista;
+  }
+
+  public void setFilmeLista(ListaObj<Filme> filmeLista) {
+    this.filmeLista = filmeLista;
   }
 }

@@ -15,21 +15,41 @@ public abstract class  AudioVisual {
 //    private List<Elenco> personagens;
     private String diretor;
     private String genero;
-//    private String sinopse;
+    private String sinopse;
+    private String trailer;
     private Number popularidade;
     private String idadeIndicativa;
     private long orcamento;
 
-    public AudioVisual(String nome, String ondeAssistir, Float nota, String dataLanc, String diretor, String genero, Number popularidade, String idadeIndicativa, long orcamento) {
+    public AudioVisual(String nome, String ondeAssistir, Float nota, String dataLanc, String diretor, String genero, String sinopse, String trailer, Number popularidade, String idadeIndicativa, long orcamento) {
         this.nome = nome;
         this.ondeAssistir = ondeAssistir;
         this.nota = nota;
         this.dataLanc = dataLanc;
         this.diretor = diretor;
         this.genero = genero;
+        this.sinopse = sinopse;
+        this.trailer = trailer;
         this.popularidade = popularidade;
         this.idadeIndicativa = idadeIndicativa;
         this.orcamento = orcamento;
+    }
+
+
+    public String getSinopse() {
+        return sinopse;
+    }
+
+    public void setSinopse(String sinopse) {
+        this.sinopse = sinopse;
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
     }
 
     public String getNome() {

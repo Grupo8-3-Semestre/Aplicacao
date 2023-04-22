@@ -1,10 +1,7 @@
 package sptech.school.voveaplication.domain.arquivo;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -15,6 +12,9 @@ public class Arquivo {
     private Integer id;
     private String nomeArquivoOriginal;
     private String nomeArquivoSalvo;
+    @Lob
+    @Column(name = "dados")
+    private byte[] dados;
     private LocalDate dataUpload;
 
     public Integer getId() {
