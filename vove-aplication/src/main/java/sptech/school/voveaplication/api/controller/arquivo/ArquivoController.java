@@ -34,7 +34,6 @@ public class ArquivoController {
             this.diretorioBase.toFile().mkdir();
         }
 
-
         String nomeArquivoFormatado = formatarNomeArquivo(file.getOriginalFilename());
 
         String filePath = this.diretorioBase + "/" + nomeArquivoFormatado;
@@ -55,7 +54,7 @@ public class ArquivoController {
         return ResponseEntity.status(200).body(arquivoBanco);
     }
     @GetMapping("/download/{id}")
-    public ResponseEntity<byte[]> download(@PathVariable Integer id){
+    public ResponseEntity<byte[]> download(@PathVariable Long id){
         Optional<Arquivo> arquivoOptional = arquivoRepository.findById(id);
 
         if (arquivoOptional.isEmpty()) {

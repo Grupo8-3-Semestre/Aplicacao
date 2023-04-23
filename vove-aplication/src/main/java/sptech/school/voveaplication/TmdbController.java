@@ -24,6 +24,7 @@ import java.util.List;
     public class TmdbController {
     private TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
 
+
     @GetMapping("diretor/{moveId}")
     public static String getDiretor(String movieId) throws IOException {
         String apiKey = "d34024db77b2cdff5b20917cc5ddae3f";
@@ -68,6 +69,7 @@ import java.util.List;
 
             return genre.getName();
         }
+
         return null;
 
     }
@@ -276,5 +278,4 @@ import java.util.List;
 
        return "Não possuí trailer";
     }
-
 }

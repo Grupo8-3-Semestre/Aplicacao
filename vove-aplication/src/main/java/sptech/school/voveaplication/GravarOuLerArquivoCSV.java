@@ -1,5 +1,6 @@
 package sptech.school.voveaplication;
 
+import info.movito.themoviedbapi.model.Genre;
 import info.movito.themoviedbapi.model.MovieDb;
 import sptech.school.voveaplication.domain.arquivo.Arquivo;
 import sptech.school.voveaplication.domain.arquivo.repository.ArquivoRepository;
@@ -37,13 +38,19 @@ public class GravarOuLerArquivoCSV {
         // Bloco try-catch para gravar o arquivo
         try {
             for (int i=0; i < lista.getTamanho(); i++) {
+
                 MovieDb filme = lista.getElemento(i);
-                saida.format("%d,%s;%s;%.2f;%s\n",
+                saida.format("%d,%s;%s;%.2f;%s;%d;%s;%.2f;%d;%s\n",
                         filme.getId(),
                         filme.getTitle(),
                         filme.getReleaseDate(),
                         filme.getPopularity(),
-                        filme.getOriginalLanguage());
+                        filme.getOriginalLanguage(),
+                        filme.getBudget(),
+                        filme.getOriginalTitle(),
+                        filme.getVoteAverage(),
+                        filme.getVoteCount(),
+                        filme.getOverview());
             }
         }
         catch (FormatterClosedException erro) {

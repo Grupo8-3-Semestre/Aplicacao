@@ -5,9 +5,7 @@ import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import sptech.school.voveaplication.domain.arquivo.Arquivo;
@@ -24,12 +22,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/filmes")
 public class FilmeController {
-    private ArquivoRepository arquivoRepository;
-
-    private Path diretorioBase = Path.of(System.getProperty("java.io.tmpdir") + "/arquivos");
 
     @GetMapping("/popular")
-    public ListaObj<MovieDb> filmesPopulares(MultipartFile file){
+    public ListaObj<MovieDb> filmesPopulares(){
+        //melhores filmes da semana por popularidade e media de nota
         GravarOuLerArquivoCSV csv = new GravarOuLerArquivoCSV();
 
         TmdbApi tmdbApi = new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f");
@@ -41,7 +37,7 @@ public class FilmeController {
         for (int i = 0; i < movies.length - 1; i++) {
             int aux = i;
             for (int j = i + 1; j < movies.length; j++) {
-                if (movies[j].getPopularity() > movies[aux].getPopularity()) {
+                if (movies[j].getVoteAverage() > movies[aux].getVoteAverage()) {
                     aux = j;
                 }
             }
@@ -49,25 +45,61 @@ public class FilmeController {
             movies[aux] = movies[i];
             movies[i] = temp;
         }
-
         ListaObj<MovieDb> popularMovies = new ListaObj<>(6);
         for (int i = 0; i < 6; i++) {
 
             popularMovies.adiciona(movies[i]);
         }
-csv.gravaArquivoCsv(popularMovies,"filmes_populares");
-
-
-        
-        
-        
+        csv.gravaArquivoCsv(popularMovies,"filmes_populares");
         return popularMovies;
-
-
     }
 
+    @GetMapping("pesquisa-binaria")
+    public MovieDb pesquisaFilme(@RequestParam String titulo) {
+        GravarOuLerArquivoCSV csv2 = new GravarOuLerArquivoCSV();
 
+        TmdbApi tmdbApi = new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f");
 
+        MovieResultsPage movieResults = tmdbApi.getMovies().getPopularMovies("pt-br", 1);
+
+        MovieDb[] movies = movieResults.getResults().toArray(new MovieDb[0]);
+
+        for (int i = 0; i < movies.length; i++) {
+            int indiceMenor = i;
+            for (int j = i + 1; j < movies.length; j++) {
+                if (movies[j].getTitle().compareToIgnoreCase(movies[indiceMenor].getTitle()) < 0) {
+                    indiceMenor = j;
+                }
+            }
+            MovieDb temp = movies[indiceMenor];
+            movies[indiceMenor] = movies[i];
+            movies[i] = temp;
+        }
+
+        ListaObj<MovieDb> popularMovies = new ListaObj<>(20);
+        for (int i = 0; i < 20; i++) {
+
+            popularMovies.adiciona(movies[i]);
+        }
+        Integer posicaoDoDFilme;
+
+        int esquerda = 0;
+        int direita = popularMovies.getTamanho() - 1;
+        while (esquerda <= direita) {
+            int meio = (esquerda + direita) / 2;
+            String tituloAtual = popularMovies.getElemento(meio).getTitle();
+            if (tituloAtual.equalsIgnoreCase(titulo)) {
+                posicaoDoDFilme = meio;
+                return popularMovies.getElemento(meio);
+            } else if (tituloAtual.compareToIgnoreCase(titulo) < 0) {
+                esquerda = meio + 1;
+            } else {
+                direita = meio - 1;
+            }
+        }
+        csv2.gravaArquivoCsv(popularMovies,"pesquisa-binaria");
+        return null;
     }
+}
 
 

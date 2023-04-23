@@ -7,9 +7,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
-import org.hibernate.validator.constraints.UniqueElements;
-import sptech.school.voveaplication.Filme;
-import sptech.school.voveaplication.ListaObj;
+
 
 import java.time.LocalDate;
 
@@ -35,6 +33,7 @@ public class Usuario {
   @PastOrPresent
   @Schema(name= "data de nascimento", example = "2001-12-04")
   private LocalDate dataNasc;
+  private Boolean aceitaEmail;
 //  @OneToMany
 //  private ListaObj<Filme> filmeLista;
 
@@ -45,6 +44,15 @@ public class Usuario {
 //  public void setFilmeLista(ListaObj<Filme> filmeLista) {
 //    this.filmeLista = filmeLista;
 //  }
+
+
+  public Boolean getAceitaEmail() {
+    return aceitaEmail;
+  }
+
+  public void setAceitaEmail(Boolean aceitaEmail) {
+    this.aceitaEmail = aceitaEmail;
+  }
 
   public Long getId() {
     return id;
