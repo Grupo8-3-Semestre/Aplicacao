@@ -1,8 +1,9 @@
-package sptech.school.voveaplication;
+package sptech.school.voveaplication.api.controller.email;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sptech.school.voveaplication.service.email.EmailService;
 
 @RestController
 @RequestMapping("emails")

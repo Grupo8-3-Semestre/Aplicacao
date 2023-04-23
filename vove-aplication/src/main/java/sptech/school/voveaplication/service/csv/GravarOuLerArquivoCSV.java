@@ -1,15 +1,13 @@
-package sptech.school.voveaplication;
+package sptech.school.voveaplication.service.csv;
 
-import info.movito.themoviedbapi.model.Genre;
 import info.movito.themoviedbapi.model.MovieDb;
-import sptech.school.voveaplication.domain.arquivo.Arquivo;
 import sptech.school.voveaplication.domain.arquivo.repository.ArquivoRepository;
+import sptech.school.voveaplication.service.listaobj.ListaObj;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Formatter;
 import java.util.FormatterClosedException;
 import java.util.NoSuchElementException;

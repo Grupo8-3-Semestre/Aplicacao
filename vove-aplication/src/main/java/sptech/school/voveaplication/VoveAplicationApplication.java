@@ -4,6 +4,9 @@ import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import sptech.school.voveaplication.antigasClasses.Filme;
+import sptech.school.voveaplication.service.csv.GravarOuLerArquivoCSV;
+import sptech.school.voveaplication.service.listaobj.ListaObj;
 
 @SpringBootApplication
 public class VoveAplicationApplication {

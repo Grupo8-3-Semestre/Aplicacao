@@ -1,4 +1,4 @@
-package sptech.school.voveaplication;
+package sptech.school.voveaplication.api.controller.filme;
 
 
 import info.movito.themoviedbapi.TmdbApi;
@@ -6,17 +6,8 @@ import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
-import sptech.school.voveaplication.domain.arquivo.Arquivo;
-import sptech.school.voveaplication.domain.arquivo.repository.ArquivoRepository;
-
-import javax.naming.directory.SearchResult;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.util.List;
+import sptech.school.voveaplication.service.csv.GravarOuLerArquivoCSV;
+import sptech.school.voveaplication.service.listaobj.ListaObj;
 
 @Tag(name = "Filmes", description = "Requisicoes relacionadas a filmes")
 @RestController

@@ -1,4 +1,4 @@
-package sptech.school.voveaplication;
+package sptech.school.voveaplication.antigasClasses;
 
 import info.movito.themoviedbapi.model.Genre;
 

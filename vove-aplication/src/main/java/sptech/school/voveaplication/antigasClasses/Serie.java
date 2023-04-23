@@ -1,8 +1,6 @@
-package sptech.school.voveaplication;
+package sptech.school.voveaplication.antigasClasses;
 
-import java.time.LocalDate;
-
-public class Serie extends AudioVisual{
+public class Serie extends AudioVisual {
     private Integer qtdTotalEps;
     private Integer qtdTemporada;
 

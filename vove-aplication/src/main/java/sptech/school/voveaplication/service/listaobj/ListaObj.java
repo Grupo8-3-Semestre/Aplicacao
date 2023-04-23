@@ -1,4 +1,4 @@
-package sptech.school.voveaplication;
+package sptech.school.voveaplication.service.listaobj;
 
 import info.movito.themoviedbapi.model.MovieDb;
 

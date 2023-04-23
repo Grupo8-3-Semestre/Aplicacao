@@ -1,7 +1,7 @@
 package sptech.school.voveaplication.service.usuario.dto;
 
-import sptech.school.voveaplication.Filme;
-import sptech.school.voveaplication.ListaObj;
+import sptech.school.voveaplication.antigasClasses.Filme;
+import sptech.school.voveaplication.service.listaobj.ListaObj;
 
 import java.time.LocalDate;
 

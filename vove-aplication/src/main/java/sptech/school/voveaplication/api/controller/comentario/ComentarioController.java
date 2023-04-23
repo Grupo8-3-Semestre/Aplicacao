@@ -1,9 +1,11 @@
-package sptech.school.voveaplication;
+package sptech.school.voveaplication.api.controller.comentario;
 
 import org.springdoc.api.OpenApiResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sptech.school.voveaplication.domain.comentario.repository.ComentarioRepository;
+import sptech.school.voveaplication.domain.comentario.Comentario;
 import sptech.school.voveaplication.domain.usuario.Usuario;
 import sptech.school.voveaplication.domain.usuario.repository.UsuarioRepository;
 

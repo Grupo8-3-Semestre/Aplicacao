@@ -1,4 +1,4 @@
-package sptech.school.voveaplication;
+package sptech.school.voveaplication.antigasClasses;
 
 public class Elenco {
     private String linkFoto;

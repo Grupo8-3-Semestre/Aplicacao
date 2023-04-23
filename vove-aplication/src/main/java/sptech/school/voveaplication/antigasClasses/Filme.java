@@ -1,8 +1,4 @@
-package sptech.school.voveaplication;
-
-import info.movito.themoviedbapi.model.Genre;
-
-import java.util.List;
+package sptech.school.voveaplication.antigasClasses;
 
 public class Filme extends AudioVisual {
     public Integer id;

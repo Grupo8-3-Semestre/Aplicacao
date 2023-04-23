@@ -1,4 +1,4 @@
-package sptech.school.voveaplication;
+package sptech.school.voveaplication.domain.comentario;
 
 import jakarta.persistence.*;
 import sptech.school.voveaplication.domain.usuario.Usuario;
