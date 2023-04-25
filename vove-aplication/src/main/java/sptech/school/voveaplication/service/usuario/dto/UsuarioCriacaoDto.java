@@ -1,5 +1,6 @@
 package sptech.school.voveaplication.service.usuario.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import sptech.school.voveaplication.antigasClasses.Filme;
 import sptech.school.voveaplication.service.listaobj.ListaObj;
 
@@ -9,11 +10,14 @@ public class UsuarioCriacaoDto {
 
 
   private Long id;
+  @Schema(example= "João Pedro Leka")
   private String nome;
 
+  @Schema(example= "email@dominio.com")
   private String email;
-
+  @Schema(example= "Senha complicada")
   private String senha;
+  @Schema(name= "data de nascimento", example = "2001-12-04")
   private LocalDate dataNasc;
 
   private ListaObj<Filme> filmeLista;

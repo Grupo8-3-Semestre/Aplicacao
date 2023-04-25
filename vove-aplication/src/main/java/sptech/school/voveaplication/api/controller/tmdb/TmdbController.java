@@ -5,6 +5,7 @@ import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.model.Genre;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.Video;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/avaliar")
+@SecurityRequirement(name = "Bearer")
     public class TmdbController {
     private TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
 

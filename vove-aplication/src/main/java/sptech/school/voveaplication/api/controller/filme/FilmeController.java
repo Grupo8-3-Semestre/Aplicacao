@@ -4,6 +4,7 @@ package sptech.school.voveaplication.api.controller.filme;
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 import sptech.school.voveaplication.service.csv.GravarOuLerArquivoCSV;
@@ -12,6 +13,7 @@ import sptech.school.voveaplication.service.listaobj.ListaObj;
 @Tag(name = "Filmes", description = "Requisicoes relacionadas a filmes")
 @RestController
 @RequestMapping("/filmes")
+@SecurityRequirement(name = "Bearer")
 public class FilmeController {
 
     @GetMapping("/popular")

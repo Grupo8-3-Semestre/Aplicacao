@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
+@SecurityRequirement(name = "Bearer")
 public class UsuarioController {
 
     @Autowired
@@ -27,7 +28,6 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping
-    @SecurityRequirement(name = "Bearer")
     public ResponseEntity<Void> criar(@RequestBody @Valid UsuarioCriacaoDto usuarioCriacaoDto) {
         this.usuarioService.criar(usuarioCriacaoDto);
         return ResponseEntity.status(201).build();

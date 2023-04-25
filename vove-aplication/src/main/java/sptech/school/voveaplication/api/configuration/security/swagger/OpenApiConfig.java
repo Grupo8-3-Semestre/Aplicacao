@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
                 contact = @Contact(
                         name = "vove-aplication",
                         url = "https://github.com/Grupo8-3-Semestre/Aplicacao",
-                        email = "joao.barbosa@sptech.school"
+                        email = "voveaplication@gmail.com"
                 ),
                 license = @License(name = "UNLICENSED"),
                 version = "1.0.0"

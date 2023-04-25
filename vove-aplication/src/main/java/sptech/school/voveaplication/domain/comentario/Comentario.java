@@ -1,5 +1,6 @@
 package sptech.school.voveaplication.domain.comentario;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import sptech.school.voveaplication.domain.usuario.Usuario;
 
@@ -12,6 +13,7 @@ public class Comentario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Schema(example = "O que você achou do filme")
     private String descricao;
 
     private Instant momentoComentario;
