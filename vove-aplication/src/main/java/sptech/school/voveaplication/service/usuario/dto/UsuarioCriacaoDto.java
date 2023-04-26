@@ -20,7 +20,7 @@ public class UsuarioCriacaoDto {
   @Schema(name= "data de nascimento", example = "2001-12-04")
   private LocalDate dataNasc;
 
-  private ListaObj<Filme> filmeLista;
+//  private ListaObj<Filme> filmeLista;
 
 
   public String getNome() {
@@ -63,11 +63,11 @@ public class UsuarioCriacaoDto {
     this.id = id;
   }
 
-  public ListaObj<Filme> getFilmeLista() {
-    return filmeLista;
-  }
+//  public ListaObj<Filme> getFilmeLista() {
+//    return filmeLista;
+//  }
 
-  public void setFilmeLista(ListaObj<Filme> filmeLista) {
-    this.filmeLista = filmeLista;
-  }
+//  public void setFilmeLista(ListaObj<Filme> filmeLista) {
+//    this.filmeLista = filmeLista;
+//  }
 }
