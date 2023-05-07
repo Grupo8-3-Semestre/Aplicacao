@@ -12,15 +12,7 @@ public interface ListaTabelaRepository extends JpaRepository<ListaTabela, Long> 
     List<ListaTabela> findByUsuarioIdAndListaFilmeId(Long idUsuario, Long idLista);
     Optional<ListaTabela> findByTmdbIdFilmeAndListaFilmeId(Integer codigoFilme, Long idLista);
 
-//    @Query("SELECT lt, l.nome FROM ListaTabela lt JOIN lt.lista l WHERE l.id = :id")
-
-//    @Query( "SELECT l.nomeDaLista " +
-//            "FROM Lista l " +
-//            "JOIN ListaTabela lt ON l.id = lt.id " +
-//            "JOIN Usuario u ON lt.usuario_id = u.id" +
-//            "WHERE u.id = :idUsuario")
-//    List<String> minhasListas(Long idUsuario);
-@Query("SELECT l.nomeDaLista FROM Lista l JOIN ListaTabela lt ON lt.listaFilme.id = l.id JOIN Usuario u ON lt.usuario.id = u.id WHERE u.id = :idUsuario")
+@Query("SELECT l.nomeDaLista FROM Lista l JOIN ListaTabela lt ON lt.listaFilme.id = l.id JOIN Usuario u ON lt.usuario.id = u.id WHERE u.id = :idUsuario GROUP BY l.nomeDaLista, u.id")
 List<String> findListasByUsuarioId(@Param("idUsuario") Long idUsuario);
 
 }

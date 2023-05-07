@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import sptech.school.voveaplication.domain.usuario.Usuario;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -16,19 +17,19 @@ public class Comentario {
     @Schema(example = "O que você achou do filme")
     private String descricao;
 
-    private Instant momentoComentario;
+    private LocalDateTime momentoComentario;
     @ManyToOne
     private Usuario usuario;
 
-    @PrePersist
-    protected void onCreate() {
-        momentoComentario = Instant.now();
-    }
+//    @PrePersist
+//    protected void onCreate() {
+//        momentoComentario = Instant.now();
+//    }
 
-    @PreUpdate
-    protected void onUpdate() {
-        momentoComentario = Instant.now();
-    }
+//    @PreUpdate
+//    protected void onUpdate() {
+//        momentoComentario = Instant.now();
+//    }
 
     public Long getId() {
         return id;
@@ -46,11 +47,11 @@ public class Comentario {
         this.descricao = descricao;
     }
 
-    public Instant getMomentoComentario() {
+    public LocalDateTime getMomentoComentario() {
         return momentoComentario;
     }
 
-    public void setMomentoComentario(Instant momentoComentario) {
+    public void setMomentoComentario(LocalDateTime momentoComentario) {
         this.momentoComentario = momentoComentario;
     }
 
