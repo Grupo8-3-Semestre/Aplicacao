@@ -91,7 +91,11 @@
 			<artifactId>themoviedbapi</artifactId>
 			<version>1.12</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>9.2.1.jre15</version>
+		</dependency>
 
 
 		<dependency>
