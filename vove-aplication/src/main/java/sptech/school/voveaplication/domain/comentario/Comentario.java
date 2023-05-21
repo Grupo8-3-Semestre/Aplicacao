@@ -21,15 +21,15 @@ public class Comentario {
     @ManyToOne
     private Usuario usuario;
 
-//    @PrePersist
-//    protected void onCreate() {
-//        momentoComentario = Instant.now();
-//    }
+    private Integer tmdbIdFilme;
 
-//    @PreUpdate
-//    protected void onUpdate() {
-//        momentoComentario = Instant.now();
-//    }
+    public Integer getTmdbIdFilme() {
+        return tmdbIdFilme;
+    }
+
+    public void setTmdbIdFilme(Integer tmdbIdFilme) {
+        this.tmdbIdFilme = tmdbIdFilme;
+    }
 
     public Long getId() {
         return id;

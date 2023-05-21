@@ -6,6 +6,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import sptech.school.voveaplication.domain.usuario.repository.UsuarioRepository;
 import sptech.school.voveaplication.service.email.EmailService;
+import sptech.school.voveaplication.service.filaobj.FilaObj;
 
 @Configuration
 @EnableScheduling
@@ -15,24 +16,32 @@ public class EmailSheduler {
 
     private UsuarioRepository usuarioRepository;
 
+    String mensagem1 = "Conteúdo da mensagem 1";
+    String mensagem2 = "Conteúdo da mensagem 2";
+    String mensagem3 = "Conteúdo da mensagem 3";
+    String mensagem4 = "Conteúdo da mensagem 4";
+    String mensagem5 = "Conteúdo da mensagem 5";
+    private FilaObj<String> filaMensagens = new FilaObj<String>(5);
+
+    public EmailSheduler() {
+        filaMensagens.insert(mensagem1);
+        filaMensagens.insert(mensagem2);
+        filaMensagens.insert(mensagem3);
+        filaMensagens.insert(mensagem4);
+        filaMensagens.insert(mensagem5);
+    }
     @Scheduled(cron = "0 46 00 ? * SUN")
+//    @Scheduled(cron = "0 */1 * * * *")
     public void enviarEmailAgendado() {
 
-//        List<Usuario> listaUsuario = usuarioRepository.findAll();
 
-//        String emailValido = "luizbxblu@gmail.com";
-//        for(int i = 0; i <= listaUsuario.size(); i++){
-//            if(listaUsuario.get(i).getAceitaEmail()){
-//                emailValido += listaUsuario.get(i).getEmail();
-//            }
-//        }
+        String proximaMensagem = filaMensagens.poll();
 
-//        List<String> emails = new ArrayList<>();
-//        emails.add("luizbxblu@gmail.com");
-//        emails.add("joao.barbosa@boxdelivery.com.br");
         String para = "luizbxblu@gmail.com";
         String assunto = "Filmes populares da semana";
-        String conteudo = "Confira os filmes mais populares desta semana!!";
+        String conteudo = proximaMensagem;
         emailService.enviarEmail(para, assunto, conteudo);
+
+        filaMensagens.insert(proximaMensagem);
     }
 }

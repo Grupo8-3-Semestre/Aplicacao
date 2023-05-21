@@ -25,9 +25,10 @@ public class ComentarioController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping()
-    public ResponseEntity<Comentario> Criar(@RequestBody Comentario novoComentario, @RequestParam Long id){
+    public ResponseEntity<Comentario> Criar(@RequestBody Comentario novoComentario, @RequestParam Long id, @RequestParam Integer tmdbId){
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new OpenApiResourceNotFoundException("Usuário não encontrado"));
         novoComentario.setUsuario(usuario);
+        novoComentario.setTmdbIdFilme(tmdbId);
         Comentario comentarioSalvo = comentarioRepository.save(novoComentario);
         return ResponseEntity.status(201).body(comentarioSalvo);
     }

@@ -11,6 +11,8 @@ import sptech.school.voveaplication.domain.lista.repository.ListaRepository;
 import sptech.school.voveaplication.domain.lista.repository.ListaTabelaRepository;
 import sptech.school.voveaplication.domain.usuario.Usuario;
 import sptech.school.voveaplication.domain.usuario.repository.UsuarioRepository;
+import sptech.school.voveaplication.service.filaobj.FilaObj;
+import sptech.school.voveaplication.service.pilhaobj.PilhaObj;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +30,9 @@ public class listaController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    private PilhaObj pilhaDeFilmesRemovidos = new PilhaObj<ListaTabela>(99);
+
+
     @PostMapping
     private ResponseEntity<Lista> criarLista(@RequestBody Lista lista, @RequestParam Long idUsuario){
         Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow(() -> new OpenApiResourceNotFoundException("Usuário não encontrado"));
@@ -42,8 +47,15 @@ public class listaController {
         novoFilmeDaLista.setUsuario(usuario);
         Lista lista = listaRepository.findById(idLista).orElseThrow(() -> new OpenApiResourceNotFoundException("Lista não encontrada"));
         novoFilmeDaLista.setListaFilme(lista);
-        ListaTabela filmeSalvo = listaTabelaRepository.save(novoFilmeDaLista);
-        return ResponseEntity.status(200).body(filmeSalvo);
+
+        boolean filmeJaExistente = listaTabelaRepository.existsByUsuarioIdAndListaFilmeIdAndTmdbIdFilme(idUsuario, idLista,
+                novoFilmeDaLista.getTmdbIdFilme());
+            if(filmeJaExistente) {
+                return ResponseEntity.status(404).build();
+            }else{
+                ListaTabela filmeSalvo = listaTabelaRepository.save(novoFilmeDaLista);
+                return ResponseEntity.status(200).body(filmeSalvo);
+            }
     }
 
     @GetMapping
@@ -57,16 +69,32 @@ public class listaController {
         return ResponseEntity.status(200).body(listas);
     }
 
-    @DeleteMapping ResponseEntity<Void> removerFilme(@RequestParam Long idusuario, @RequestParam Long idLista, @RequestParam int tmdbIdFilme){
+    @DeleteMapping
+    private ResponseEntity<Void> removerFilme(@RequestParam Long idusuario, @RequestParam Long idLista, @RequestParam int tmdbIdFilme){
         Optional<ListaTabela> filmeProcurado = listaTabelaRepository.findByTmdbIdFilmeAndListaFilmeId(tmdbIdFilme, idLista);
         if(idusuario == filmeProcurado.get().getUsuario().getId()) {
             if (filmeProcurado.isPresent()) {
-                listaTabelaRepository.delete(filmeProcurado.get());
-                return ResponseEntity.status(200).build();
+                if(pilhaDeFilmesRemovidos.cheia()){
+                    ResponseEntity.status(404).body("Pilha cheia");
+                } else {
+                    pilhaDeFilmesRemovidos.empilhar(filmeProcurado.get());
+                    System.out.println(pilhaDeFilmesRemovidos.topo());
+                    listaTabelaRepository.delete(filmeProcurado.get());
+                    return ResponseEntity.status(200).build();
+                }
             }
         }
         return ResponseEntity.status(404).build();
-
     }
+
+    @PostMapping("/desfazer")
+    private ResponseEntity<ListaTabela> desfazerRemocao(@RequestParam Long idUsuario, @RequestParam Long idLista){
+
+        ListaTabela filmeRemovido = (ListaTabela) pilhaDeFilmesRemovidos.desempilhar();
+        ListaTabela filmeSalvoNovamente = listaTabelaRepository.save(filmeRemovido);
+        return ResponseEntity.status(200).body(filmeSalvoNovamente);
+    }
+
+
 }
 
