@@ -195,11 +195,20 @@ import java.util.List;
 
     }
     @GetMapping("poster/{moveId}")
-    public static String getVotos(int movieId) throws IOException {
+    public static String getPoster(int movieId) throws IOException {
 
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
 
        return tmdbMovies.getMovie(movieId,"pt-br").getPosterPath();
+
+    }
+
+    @GetMapping("backdrop/{moveId}")
+    public static String getBackDrop(int movieId) throws IOException {
+
+        TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
+
+        return tmdbMovies.getMovie(movieId,"pt-br").getBackdropPath();
 
     }
 
