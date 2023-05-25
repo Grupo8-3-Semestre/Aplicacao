@@ -76,6 +76,8 @@ import java.util.List;
 
     }
 
+
+
     @GetMapping("classificacao-indicativa/{moveId}")
     public static String getIdade(int movieId) throws IOException {
 
@@ -192,12 +194,12 @@ import java.util.List;
          return tmdbMovies.getMovie(movieId,"pt-br").getTitle();
 
     }
-    @GetMapping("votos/{moveId}")
-    public static double getVotos(int movieId) throws IOException {
+    @GetMapping("poster/{moveId}")
+    public static String getVotos(int movieId) throws IOException {
 
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
 
-       return tmdbMovies.getMovie(movieId,"pt-br").getVoteAverage();
+       return tmdbMovies.getMovie(movieId,"pt-br").getPosterPath();
 
     }
 

@@ -82,5 +82,21 @@ public class ListaObj<T> {
             throw new IllegalArgumentException("Tipo inválido para o elemento da lista.");
         }
     }
+
+    public T[] getVetor() {
+        return vetor;
+    }
+
+    public void setVetor(T[] vetor) {
+        this.vetor = vetor;
+    }
+
+    public int getNroElem() {
+        return nroElem;
+    }
+
+    public void setNroElem(int nroElem) {
+        this.nroElem = nroElem;
+    }
 }
 
