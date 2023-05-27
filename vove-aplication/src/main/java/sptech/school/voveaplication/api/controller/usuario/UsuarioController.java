@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/usuarios")
 @SecurityRequirement(name = "Bearer")
+@CrossOrigin
 public class UsuarioController {
 
     @Autowired

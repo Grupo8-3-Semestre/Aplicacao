@@ -16,8 +16,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/comentarios")
 @SecurityRequirement(name = "Bearer")
+@CrossOrigin
 public class ComentarioController {
-
     @Autowired
     private ComentarioRepository comentarioRepository;
 

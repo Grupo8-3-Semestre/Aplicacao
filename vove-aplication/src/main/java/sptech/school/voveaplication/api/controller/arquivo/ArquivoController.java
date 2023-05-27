@@ -18,6 +18,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/arquivos")
 @SecurityRequirement(name = "Bearer")
+@CrossOrigin
 public class ArquivoController {
 
     @Autowired

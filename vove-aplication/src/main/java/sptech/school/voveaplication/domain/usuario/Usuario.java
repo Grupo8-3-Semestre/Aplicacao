@@ -34,16 +34,6 @@ public class Usuario {
   @Schema(name= "data de nascimento", example = "2001-12-04")
   private LocalDate dataNasc;
   private Boolean aceitaEmail;
-//  @OneToMany
-//  private ListaObj<Filme> filmeLista;
-
-//  public ListaObj<Filme> getFilmeLista() {
-//    return filmeLista;
-//  }
-//
-//  public void setFilmeLista(ListaObj<Filme> filmeLista) {
-//    this.filmeLista = filmeLista;
-//  }
 
 
   public Boolean getAceitaEmail() {

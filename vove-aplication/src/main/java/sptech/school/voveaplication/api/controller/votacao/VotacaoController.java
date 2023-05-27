@@ -17,6 +17,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/votacao")
 @SecurityRequirement(name = "Bearer")
+@CrossOrigin
 public class VotacaoController {
 
     @Autowired

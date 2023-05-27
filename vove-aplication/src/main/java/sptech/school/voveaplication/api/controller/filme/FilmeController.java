@@ -14,6 +14,7 @@ import sptech.school.voveaplication.service.listaobj.ListaObj;
 @RestController
 @RequestMapping("/filmes")
 @SecurityRequirement(name = "Bearer")
+@CrossOrigin
 public class FilmeController {
 
     @GetMapping("/popular")

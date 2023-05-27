@@ -9,6 +9,7 @@ import sptech.school.voveaplication.service.email.EmailService;
 @RestController
 @RequestMapping("emails")
 @SecurityRequirement(name = "Bearer")
+@CrossOrigin
 public class EmailController {
 
     @Autowired
