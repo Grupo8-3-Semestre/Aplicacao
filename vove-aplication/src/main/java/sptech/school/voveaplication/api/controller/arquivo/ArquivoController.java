@@ -18,7 +18,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/arquivos")
 @SecurityRequirement(name = "Bearer")
-@CrossOrigin
 public class ArquivoController {
 
     @Autowired
@@ -26,6 +25,7 @@ public class ArquivoController {
 
     private Path diretorioBase = Path.of(System.getProperty("java.io.tmpdir") + "/arquivos");
 
+    @CrossOrigin
     @PostMapping("/upload")
     public ResponseEntity<Arquivo> upload(@RequestParam("arquivo") MultipartFile file) {
 
@@ -56,6 +56,7 @@ public class ArquivoController {
 
         return ResponseEntity.status(200).body(arquivoBanco);
     }
+    @CrossOrigin
     @GetMapping("/download/{id}")
     public ResponseEntity<byte[]> download(@PathVariable Long id){
         Optional<Arquivo> arquivoOptional = arquivoRepository.findById(id);
@@ -82,6 +83,7 @@ public class ArquivoController {
             throw new ResponseStatusException(422, "Não foi possível converter para byte[]", null);
         }
     }
+    @CrossOrigin
     private String formatarNomeArquivo(String nomeOriginal) {
         return String.format("%s_%s", UUID.randomUUID(), nomeOriginal);
     }

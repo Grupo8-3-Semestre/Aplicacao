@@ -9,6 +9,9 @@ public class UsuarioLoginDto {
   @Schema(description = "Senha do usuário", example = "123456")
   private String senha;
 
+
+
+
   public String getEmail() {
     return email;
   }

@@ -17,7 +17,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/votacao")
 @SecurityRequirement(name = "Bearer")
-@CrossOrigin
 public class VotacaoController {
 
     @Autowired
@@ -27,6 +26,7 @@ public class VotacaoController {
     private UsuarioRepository usuarioRepository;
 
 
+    @CrossOrigin
     @PostMapping("/votos")
     public ResponseEntity<Votacao> votar(@RequestBody Votacao voto, @RequestParam Long id, @RequestParam Integer tmdbId) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new OpenApiResourceNotFoundException("Usuário não encontrado"));
@@ -45,6 +45,7 @@ public class VotacaoController {
         return ResponseEntity.status(200).body(voto);
     }
 
+    @CrossOrigin
     @GetMapping()
     public ResponseEntity<Double> Media(@RequestParam Integer tmdbId){
         Double mediaDeVotos = votacaoRepository.mediaDeVotos(tmdbId);

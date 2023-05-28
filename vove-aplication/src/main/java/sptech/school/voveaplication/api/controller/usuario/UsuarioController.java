@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/usuarios")
 @SecurityRequirement(name = "Bearer")
-@CrossOrigin
 public class UsuarioController {
 
     @Autowired
@@ -28,12 +27,14 @@ public class UsuarioController {
 
     private UsuarioRepository usuarioRepository;
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<Void> criar(@RequestBody @Valid UsuarioCriacaoDto usuarioCriacaoDto) {
         this.usuarioService.criar(usuarioCriacaoDto);
         return ResponseEntity.status(201).build();
     }
 
+    @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<UsuarioTokenDto> login(@RequestBody UsuarioLoginDto usuarioLoginDto) {
         UsuarioTokenDto usuarioTokenDto = this.usuarioService.autenticar(usuarioLoginDto);
@@ -41,6 +42,14 @@ public class UsuarioController {
         return ResponseEntity.status(200).body(usuarioTokenDto);
     }
 
+    @CrossOrigin
+    @PostMapping("/deslogar/{usuarioId}")
+    public ResponseEntity<Void> deslogarUsuario(@PathVariable Long usuarioId) {
+        this.usuarioService.deslogar(usuarioId);
+        return ResponseEntity.ok().build();
+    }
+
+    @CrossOrigin
     @PutMapping("/id")
     public ResponseEntity<Void> atualizar(@RequestParam Long id,@RequestBody Usuario usuarioAtualizar) {
 
@@ -52,6 +61,7 @@ public class UsuarioController {
 
     }
 
+    @CrossOrigin
     @DeleteMapping("/id")
     public ResponseEntity<Void> deletar(@RequestParam Long id) {
 
@@ -62,6 +72,7 @@ public class UsuarioController {
     }
 
 
+    @CrossOrigin
     @GetMapping
     public List<Usuario> listar(){
         List<Usuario> usuarios= this.usuarioService.listar();

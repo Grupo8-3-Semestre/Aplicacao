@@ -9,12 +9,12 @@ import sptech.school.voveaplication.service.email.EmailService;
 @RestController
 @RequestMapping("emails")
 @SecurityRequirement(name = "Bearer")
-@CrossOrigin
 public class EmailController {
 
     @Autowired
     private EmailService emailService;
 
+    @CrossOrigin
     @PostMapping("/enviar")
     public ResponseEntity<String> enviarEmail(@RequestParam String para,@RequestParam String assunto,@RequestParam String conteudo) {
         emailService.enviarEmail(para, assunto, conteudo);

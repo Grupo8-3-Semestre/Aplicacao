@@ -1,6 +1,7 @@
 package sptech.school.voveaplication.service.usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -99,11 +100,24 @@ return usuarios;
                     .orElseThrow(
                             () -> new ResponseStatusException(404, "Email do usuário não cadastrado", null)
                     );
+    usuarioAutenticado.setLogado(true);
+    usuarioRepository.save(usuarioAutenticado);
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
     final String token = gerenciadorTokenJwt.generateToken(authentication);
 
     return UsuarioMapper.of(usuarioAutenticado, token);
+  }
+  public void deslogar(long usuarioId) {
+    Optional<Usuario> optionalUsuario = usuarioRepository.findById(usuarioId);
+
+    if (optionalUsuario.isPresent()) {
+      Usuario usuario = optionalUsuario.get();
+      usuario.setLogado(false);
+      usuarioRepository.save(usuario);
+    } else {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado");
+    }
   }
 }

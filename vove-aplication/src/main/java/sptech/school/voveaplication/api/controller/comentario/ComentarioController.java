@@ -16,7 +16,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/comentarios")
 @SecurityRequirement(name = "Bearer")
-@CrossOrigin
 public class ComentarioController {
     @Autowired
     private ComentarioRepository comentarioRepository;
@@ -24,6 +23,7 @@ public class ComentarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @CrossOrigin
     @PostMapping()
     public ResponseEntity<Comentario> Criar(@RequestBody Comentario novoComentario, @RequestParam Long id, @RequestParam Integer tmdbId){
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new OpenApiResourceNotFoundException("Usuário não encontrado"));
@@ -33,6 +33,7 @@ public class ComentarioController {
         return ResponseEntity.status(201).body(comentarioSalvo);
     }
 
+    @CrossOrigin
     @GetMapping()
     public ResponseEntity<List<Comentario>> listar(){
         List<Comentario> listaDeComentario = comentarioRepository.findAll();
@@ -42,6 +43,7 @@ public class ComentarioController {
         return ResponseEntity.status(200).body(listaDeComentario);
     }
 
+    @CrossOrigin
     @PutMapping()
     public ResponseEntity<Comentario> atualizar(@RequestBody Comentario comentarioAtualizado, @RequestParam Long idcomentario
             , @RequestParam Long idusuario){
@@ -58,6 +60,7 @@ public class ComentarioController {
         }
         return ResponseEntity.status(404).build();
     }
+    @CrossOrigin
     @DeleteMapping()
     public ResponseEntity<Void> deletar(@RequestParam Long idcomentario, @RequestParam Long idusuario){
         Optional<Comentario> comentarioProcurado = comentarioRepository.findById(idcomentario);

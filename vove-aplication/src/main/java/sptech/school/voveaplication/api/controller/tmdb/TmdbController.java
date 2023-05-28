@@ -24,11 +24,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/avaliar")
 @SecurityRequirement(name = "Bearer")
-@CrossOrigin
     public class TmdbController {
     private TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
 
 
+    @CrossOrigin
     @GetMapping("diretor/{moveId}")
     public static String getDiretor(String movieId) throws IOException {
         String apiKey = "d34024db77b2cdff5b20917cc5ddae3f";
@@ -62,6 +62,7 @@ import java.util.List;
 
     }
 
+    @CrossOrigin
     @GetMapping("genero/{moveId}")
     public static String getGenero(int movieId) throws IOException {
         String apiKey = "d34024db77b2cdff5b20917cc5ddae3f";
@@ -80,6 +81,7 @@ import java.util.List;
 
 
 
+    @CrossOrigin
     @GetMapping("classificacao-indicativa/{moveId}")
     public static String getIdade(int movieId) throws IOException {
 
@@ -145,6 +147,7 @@ import java.util.List;
 
     }
 
+    @CrossOrigin
     @GetMapping("onde-assistir/{moveId}")
     public static String getOndeAssistir(int movieId) throws IOException {
         String apiKey = "d34024db77b2cdff5b20917cc5ddae3f";
@@ -189,6 +192,7 @@ import java.util.List;
         }
         return null;
     }
+    @CrossOrigin
     @GetMapping("nome/{moveId}")
     public static String getNome(int movieId) throws IOException {
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
@@ -196,6 +200,7 @@ import java.util.List;
          return tmdbMovies.getMovie(movieId,"pt-br").getTitle();
 
     }
+    @CrossOrigin
     @GetMapping("poster/{moveId}")
     public static String getPoster(int movieId) throws IOException {
 
@@ -205,6 +210,7 @@ import java.util.List;
 
     }
 
+    @CrossOrigin
     @GetMapping("backdrop/{moveId}")
     public static String getBackDrop(int movieId) throws IOException {
 
@@ -214,6 +220,7 @@ import java.util.List;
 
     }
 
+    @CrossOrigin
     @GetMapping("lancamento/{moveId}")
     public static String getData(int movieId) throws IOException {
 
@@ -225,6 +232,7 @@ import java.util.List;
     }
 
 
+    @CrossOrigin
     @GetMapping("popularidade/{moveId}")
     public static Number getPopularidade(int movieId) throws IOException {
 
@@ -234,6 +242,7 @@ import java.util.List;
 
 
     }
+    @CrossOrigin
     @GetMapping("orcamento/{moveId}")
     public static long getOrcamento(int movieId) throws IOException {
 
@@ -245,6 +254,7 @@ import java.util.List;
     }
 
 
+    @CrossOrigin
     @GetMapping("id-filme/{moveId}")
     public static Integer getId(int movieId) throws IOException {
 
@@ -254,6 +264,7 @@ import java.util.List;
 
 
     }
+    @CrossOrigin
     @GetMapping("duracao/{moveId}")
     public static Integer getTempo(int movieId) throws IOException {
 
@@ -264,6 +275,7 @@ import java.util.List;
 
     }
 
+    @CrossOrigin
     @GetMapping("sinopse/{moveId}")
     public static String getSinopse(int movieId) throws IOException {
 
@@ -274,6 +286,7 @@ import java.util.List;
 
     }
 
+    @CrossOrigin
     @GetMapping("trailer/{moveId}")
     public static String getTrailer(int movieId) throws IOException {
         TmdbApi tmdbApi = new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f");

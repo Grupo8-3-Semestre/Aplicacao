@@ -35,6 +35,20 @@ public class Usuario {
   private LocalDate dataNasc;
   private Boolean aceitaEmail;
 
+  private boolean logado;
+
+
+  public Usuario() {
+    this.logado = false;
+  }
+
+  public boolean isLogado() {
+    return logado;
+  }
+
+  public void setLogado(boolean logado) {
+    this.logado = logado;
+  }
 
   public Boolean getAceitaEmail() {
     return aceitaEmail;

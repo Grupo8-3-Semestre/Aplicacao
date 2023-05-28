@@ -19,7 +19,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/listas")
 @SecurityRequirement(name = "Bearer")
-@CrossOrigin
 public class ListaController {
 
     @Autowired
@@ -32,7 +31,7 @@ public class ListaController {
 
     private PilhaObj pilhaDeFilmesRemovidos = new PilhaObj<ListaTabela>(99);
 
-
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<Lista> criarLista(@RequestBody Lista lista, @RequestParam Long idUsuario){
         Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow(() -> new OpenApiResourceNotFoundException("Usuário não encontrado"));
@@ -40,6 +39,7 @@ public class ListaController {
         return ResponseEntity.status(201).body(novaLista);
     }
 
+    @CrossOrigin
     @PostMapping("/adicionar")
     public ResponseEntity<ListaTabela> adicionarFilme(@RequestBody ListaTabela novoFilmeDaLista,
                                                        @RequestParam Long idUsuario, @RequestParam Long idLista){
@@ -58,17 +58,20 @@ public class ListaController {
             }
     }
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity<List<ListaTabela>> verLista (@RequestParam Long idUsuario, @RequestParam Long idLista){
         List<ListaTabela> minhaLista = listaTabelaRepository.findByUsuarioIdAndListaFilmeId(idUsuario, idLista);
         return ResponseEntity.status(200).body(minhaLista);
     }
+    @CrossOrigin
     @GetMapping("/minhas-listas")
     public ResponseEntity<List<String>> minhasListas(@RequestParam Long idUsuario){
         List<String> listas = listaTabelaRepository.findListasByUsuarioId(idUsuario);
         return ResponseEntity.status(200).body(listas);
     }
 
+    @CrossOrigin
     @DeleteMapping
     public ResponseEntity<Void> removerFilme(@RequestParam Long idusuario, @RequestParam Long idLista, @RequestParam int tmdbIdFilme){
         Optional<ListaTabela> filmeProcurado = listaTabelaRepository.findByTmdbIdFilmeAndListaFilmeId(tmdbIdFilme, idLista);
@@ -87,6 +90,7 @@ public class ListaController {
         return ResponseEntity.status(404).build();
     }
 
+    @CrossOrigin
     @PostMapping("/desfazer")
     public ResponseEntity<ListaTabela> desfazerRemocao(@RequestParam Long idUsuario, @RequestParam Long idLista){
 

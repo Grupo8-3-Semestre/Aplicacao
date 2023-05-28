@@ -14,9 +14,9 @@ import sptech.school.voveaplication.service.listaobj.ListaObj;
 @RestController
 @RequestMapping("/filmes")
 @SecurityRequirement(name = "Bearer")
-@CrossOrigin
 public class FilmeController {
 
+    @CrossOrigin
     @GetMapping("/popular")
     public ListaObj<MovieDb> filmesPopulares(){
         //melhores filmes da semana por popularidade e media de nota
@@ -48,6 +48,7 @@ public class FilmeController {
         return popularMovies;
     }
 
+    @CrossOrigin
     @GetMapping("pesquisa-binaria")
     public MovieDb pesquisaFilme(@RequestParam String titulo) {
         GravarOuLerArquivoCSV csv2 = new GravarOuLerArquivoCSV();
