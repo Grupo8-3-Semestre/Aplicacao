@@ -6,12 +6,13 @@ import info.movito.themoviedbapi.model.Genre;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.Video;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +23,7 @@ import java.net.URL;
 import java.util.List;
 
 @RestController
-@RequestMapping("/avaliar")
+@RequestMapping("/tmdb")
 @SecurityRequirement(name = "Bearer")
     public class TmdbController {
     private TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
@@ -286,24 +287,38 @@ import java.util.List;
 
     }
 
+
     @CrossOrigin
-    @GetMapping("trailer/{moveId}")
-    public static String getTrailer(int movieId) throws IOException {
-        TmdbApi tmdbApi = new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f");
+    @GetMapping("trailer/{movieId}")
+    public String getTrailer(@PathVariable int movieId) throws IOException {
+        String apiKey = "d34024db77b2cdff5b20917cc5ddae3f";
+        String url = "https://api.themoviedb.org/3/movie/" + movieId + "/videos?api_key=" + apiKey + "&language=pt-BR";
 
-        MovieDb movie = tmdbApi.getMovies().getMovie(movieId, "videos");
-        List<Video> videos = movie.getVideos();
-        Video trailer = videos.stream()
-                .filter(video -> video.getType().equals("Trailer"))
-                .findFirst()
-                .orElse(null);
-        String trailerUrl="";
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+            HttpGet httpGet = new HttpGet(url);
+            String responseBody = EntityUtils.toString(httpClient.execute(httpGet).getEntity());
 
+            JSONObject responseJson = new JSONObject(responseBody);
+            JSONArray results = responseJson.getJSONArray("results");
 
-        if (trailer != null) {
-          return trailerUrl = "https://www.youtube.com/watch?v=" + trailer.getKey();
+            for (int i = 0; i < results.length(); i++) {
+                JSONObject videoJson = results.getJSONObject(i);
+                String type = videoJson.getString("type");
+                if (type.equals("Trailer")) {
+                    String videoKey = videoJson.getString("key");
+                    String trailerUrl = "https://www.youtube.com/watch?v=" + videoKey;
+                    return trailerUrl;
+                }
+            }
         }
 
-       return "Não possuí trailer";
+        return "Não possui trailer legendado em pt-br";
     }
+
+
+
+
+
+
+
 }

@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import sptech.school.voveaplication.service.csv.GravarOuLerArquivoCSV;
 import sptech.school.voveaplication.service.listaobj.ListaObj;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Tag(name = "Filmes", description = "Requisicoes relacionadas a filmes")
 @RestController
 @RequestMapping("/filmes")
@@ -94,6 +98,35 @@ public class FilmeController {
         }
         csv2.gravaArquivoCsv(popularMovies,"pesquisa-binaria");
         return null;
+    }
+
+    @CrossOrigin
+    @GetMapping("bia")
+    public List<MovieDb> retornaFilmes() {
+        TmdbApi tmdbApi = new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f");
+
+        MovieResultsPage movieResults = tmdbApi.getMovies().getTopRatedMovies("pt-br", 1);
+        MovieResultsPage movieResults2 = tmdbApi.getMovies().getTopRatedMovies("pt-br", 2);
+        MovieResultsPage movieResults3 = tmdbApi.getMovies().getTopRatedMovies("pt-br", 3);
+
+        ListaObj<MovieDb> topMovies = new ListaObj<>(50);
+
+        for (MovieDb movie : movieResults.getResults()) {
+            topMovies.adiciona(movie);
+        }
+        for (MovieDb movie : movieResults2.getResults()) {
+            topMovies.adiciona(movie);
+        }
+        for (MovieDb movie : movieResults3.getResults()) {
+            topMovies.adiciona(movie);
+        }
+
+        List<MovieDb> filmeList = new ArrayList<>();
+        for (int i = 0; i < topMovies.getNroElem(); i++) {
+            filmeList.add(topMovies.getElemento(i));
+        }
+
+        return filmeList;
     }
 }
 

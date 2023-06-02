@@ -51,11 +51,14 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/usuarios/login/**"),
             new AntPathRequestMatcher("/error/**"),
             new AntPathRequestMatcher("/h2-console/**"),
-            new AntPathRequestMatcher("/usuarios/**")
-//            new AntPathRequestMatcher("/comentarios/**"),
-//            new AntPathRequestMatcher("/arquivos/**"),
-//            new AntPathRequestMatcher("/avaliar/**"),
-//            new AntPathRequestMatcher("/emails/enviar/**"),
+            new AntPathRequestMatcher("/usuarios/**"),
+            new AntPathRequestMatcher("/comentarios/**"),
+            new AntPathRequestMatcher("/arquivos/**"),
+            new AntPathRequestMatcher("/emails/**"),
+            new AntPathRequestMatcher("/tmdb/**"),
+            new AntPathRequestMatcher("/listas/**"),
+            new AntPathRequestMatcher("/filmes/**"),
+            new AntPathRequestMatcher("/votacao/**")
 
     };
 

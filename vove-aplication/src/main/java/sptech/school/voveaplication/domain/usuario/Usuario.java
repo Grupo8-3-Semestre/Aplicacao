@@ -18,15 +18,15 @@ public class Usuario {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank
+
   @Size(min = 3, max = 32)
   @Schema(example= "João Pedro Leka")
   private String nome;
-  @NotBlank
+
   @Email
   @Schema(example= "email@dominio.com")
   private String email;
-  @NotBlank
+
   @Size(min = 8, max = 255)
   @Schema(example= "Senha complicada")
   private String senha;
