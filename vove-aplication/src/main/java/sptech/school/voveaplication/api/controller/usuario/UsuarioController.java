@@ -24,7 +24,7 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
-
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     @CrossOrigin
@@ -44,13 +44,14 @@ public class UsuarioController {
         return ResponseEntity.status(200).body(usuarioTokenDto);
     }
 
-//    @CrossOrigin
-//    @GetMapping("/logado")
-//    public ResponseEntity<UsuarioTokenDto> usuarioAutenticado(@RequestParam long idUsuario){
-//        Optional<Usuario> byId = usuarioRepository.findById(idUsuario);
-//
-//        return ResponseEntity.status(200).body(usuarioTokenDto);
-//    }
+    @CrossOrigin
+    @GetMapping("/autenticado")
+    public ResponseEntity<Optional<Usuario>> autenticação(@RequestParam long idUsuario) {
+
+        Optional<Usuario> usuarioLogado = usuarioRepository.findUsuarioLogadoById(idUsuario);
+
+        return ResponseEntity.status(200).body(usuarioLogado);
+    }
 
     @CrossOrigin
     @PostMapping("/deslogar/{usuarioId}")
@@ -65,8 +66,6 @@ public class UsuarioController {
 
         this.usuarioService.atualizar(id, usuarioAtualizar);
         return ResponseEntity.status(200).build();
-
-
 
 
     }
