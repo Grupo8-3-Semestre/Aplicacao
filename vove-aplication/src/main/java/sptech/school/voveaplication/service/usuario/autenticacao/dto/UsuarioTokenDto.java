@@ -6,6 +6,7 @@ public class UsuarioTokenDto {
   private String nome;
   private String email;
   private String token;
+  private Boolean logado;
 
   public Long getUserId() {
     return userId;
@@ -37,5 +38,13 @@ public class UsuarioTokenDto {
 
   public void setToken(String token) {
     this.token = token;
+  }
+
+  public Boolean getLogado() {
+    return logado;
+  }
+
+  public void setLogado(Boolean logado) {
+    this.logado = logado;
   }
 }

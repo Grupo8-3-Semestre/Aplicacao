@@ -39,8 +39,18 @@ public class UsuarioController {
     public ResponseEntity<UsuarioTokenDto> login(@RequestBody UsuarioLoginDto usuarioLoginDto) {
         UsuarioTokenDto usuarioTokenDto = this.usuarioService.autenticar(usuarioLoginDto);
 
+        usuarioTokenDto.setLogado(true);
+
         return ResponseEntity.status(200).body(usuarioTokenDto);
     }
+
+//    @CrossOrigin
+//    @GetMapping("/logado")
+//    public ResponseEntity<UsuarioTokenDto> usuarioAutenticado(@RequestParam long idUsuario){
+//        Optional<Usuario> byId = usuarioRepository.findById(idUsuario);
+//
+//        return ResponseEntity.status(200).body(usuarioTokenDto);
+//    }
 
     @CrossOrigin
     @PostMapping("/deslogar/{usuarioId}")

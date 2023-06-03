@@ -2,11 +2,16 @@ package sptech.school.voveaplication.api.controller.filme;
 
 
 import info.movito.themoviedbapi.TmdbApi;
+import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sptech.school.voveaplication.domain.comentario.Comentario;
+import sptech.school.voveaplication.domain.comentario.repository.ComentarioRepository;
+import sptech.school.voveaplication.domain.filme.dto.FilmeDtoResultado;
 import sptech.school.voveaplication.service.csv.GravarOuLerArquivoCSV;
 import sptech.school.voveaplication.service.listaobj.ListaObj;
 
@@ -20,6 +25,8 @@ import java.util.List;
 @SecurityRequirement(name = "Bearer")
 public class FilmeController {
 
+    @Autowired
+    private ComentarioRepository comentarioRepository;
     @CrossOrigin
     @GetMapping("/popular")
     public ListaObj<MovieDb> filmesPopulares(){
@@ -127,6 +134,30 @@ public class FilmeController {
         }
 
         return filmeList;
+    }
+
+    @CrossOrigin
+    @GetMapping("testeDto")
+    public List<FilmeDtoResultado> retornarVariasInfoDoFilme() {
+        TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
+
+        List<Comentario> todosComentarios = comentarioRepository.findAll();
+
+        List<FilmeDtoResultado> listaDeDto = new ArrayList<>();
+
+        for(int i = 0; i < todosComentarios.size(); i++){
+
+            String nomeUsuario = todosComentarios.get(i).getUsuario().getNome();
+            Integer idFilme = todosComentarios.get(i).getTmdbIdFilme();
+            String posterPath = tmdbMovies.getMovie(idFilme, "pt-br").getPosterPath();
+            String nomeFilme = tmdbMovies.getMovie(idFilme, "pt-br").getTitle();
+            String comentario = todosComentarios.get(i).getDescricao();
+            float notaGeral = tmdbMovies.getMovie(idFilme, "pt-br").getVoteAverage();
+
+            FilmeDtoResultado filmeDto = new FilmeDtoResultado(nomeUsuario,idFilme, posterPath, nomeFilme, comentario, notaGeral);
+            listaDeDto.add(filmeDto);
+        }
+        return listaDeDto;
     }
 }
 

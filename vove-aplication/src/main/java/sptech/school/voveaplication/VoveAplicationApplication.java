@@ -21,20 +21,5 @@ public class VoveAplicationApplication {
 
 		ListaObj<Filme> listaFilme = new ListaObj(7);
 
-//		listaFilme.adiciona(new Filme(
-//				tmdbMovies.getMovie(312221,"pt-br").getTitle(),
-//				getOndeAssistir(312221),
-//				tmdbMovies.getMovie(312221,"pt-br").getVoteAverage(),
-//				tmdbMovies.getMovie(312221,"pt-br").getReleaseDate(),
-//				getDiretor("312221"),
-//				getGenero(312221),
-//				tmdbMovies.getMovie(312221,"pt-br").getPopularity(),
-//				getIdade(312221),
-//				tmdbMovies.getMovie(312221,"pt-br").getBudget(),
-//				tmdbMovies.getMovie(312221,"pt-br").getId(),
-//				tmdbMovies.getMovie(312221,"pt-br").getRuntime()));
-//		listaFilme.exibe();
-//		csv.gravaArquivoCsv(listaFilme, "filmes");
-//		csv.leArquivoCsv("filmes");
 	}
 }
