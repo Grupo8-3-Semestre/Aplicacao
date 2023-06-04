@@ -22,6 +22,15 @@ public class Comentario {
     private Usuario usuario;
 
     private Integer tmdbIdFilme;
+    private Boolean spoiler;
+
+    public Boolean getSpoiler() {
+        return spoiler;
+    }
+
+    public void setSpoiler(Boolean spoiler) {
+        this.spoiler = spoiler;
+    }
 
     public Integer getTmdbIdFilme() {
         return tmdbIdFilme;

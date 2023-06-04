@@ -153,8 +153,9 @@ public class FilmeController {
             String nomeFilme = tmdbMovies.getMovie(idFilme, "pt-br").getTitle();
             String comentario = todosComentarios.get(i).getDescricao();
             float notaGeral = tmdbMovies.getMovie(idFilme, "pt-br").getVoteAverage();
+            Boolean spoiler = todosComentarios.get(i).getSpoiler();
 
-            FilmeDtoResultado filmeDto = new FilmeDtoResultado(nomeUsuario,idFilme, posterPath, nomeFilme, comentario, notaGeral);
+            FilmeDtoResultado filmeDto = new FilmeDtoResultado(nomeUsuario,idFilme, posterPath, nomeFilme, comentario, notaGeral, spoiler);
             listaDeDto.add(filmeDto);
         }
         return listaDeDto;
