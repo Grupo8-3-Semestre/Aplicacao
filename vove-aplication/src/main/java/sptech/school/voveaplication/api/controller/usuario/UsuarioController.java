@@ -11,6 +11,7 @@ import sptech.school.voveaplication.service.usuario.UsuarioService;
 import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioDetalhesDto;
 import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioLoginDto;
 import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioTokenDto;
+import sptech.school.voveaplication.service.usuario.dto.UsuarioAtualizacaoDto;
 import sptech.school.voveaplication.service.usuario.dto.UsuarioCriacaoDto;
 
 import java.util.List;
@@ -31,6 +32,14 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<Void> criar(@RequestBody @Valid UsuarioCriacaoDto usuarioCriacaoDto) {
         this.usuarioService.criar(usuarioCriacaoDto);
+        return ResponseEntity.status(201).build();
+    }
+
+    @CrossOrigin
+    @PostMapping("completar/{id}")
+    public ResponseEntity<Void> completarCadastro (@RequestBody @Valid UsuarioAtualizacaoDto usuarioCriacaoDto, @PathVariable Long id){
+
+        this.usuarioService.completarCadastro(id,usuarioCriacaoDto);
         return ResponseEntity.status(201).build();
     }
 

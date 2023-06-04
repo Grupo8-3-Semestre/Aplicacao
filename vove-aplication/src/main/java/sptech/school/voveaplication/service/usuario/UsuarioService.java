@@ -16,6 +16,7 @@ import sptech.school.voveaplication.domain.usuario.Usuario;
 import sptech.school.voveaplication.domain.usuario.repository.UsuarioRepository;
 import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioLoginDto;
 import sptech.school.voveaplication.service.usuario.autenticacao.dto.UsuarioTokenDto;
+import sptech.school.voveaplication.service.usuario.dto.UsuarioAtualizacaoDto;
 import sptech.school.voveaplication.service.usuario.dto.UsuarioCriacaoDto;
 import sptech.school.voveaplication.service.usuario.dto.UsuarioMapper;
 
@@ -44,6 +45,42 @@ public class UsuarioService {
     novoUsuario.setSenha(senhaCriptografada);
 
     this.usuarioRepository.save(novoUsuario);
+  }
+
+  public void completarCadastro(Long id, UsuarioAtualizacaoDto usuarioAtualizacaoDto) {
+    Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+
+    if (optionalUsuario.isPresent()) {
+      Usuario usuario = optionalUsuario.get();
+
+      // Atualizar apenas os campos nulos do objeto Usuario
+      if (usuario.getCep() == null) {
+        usuario.setCep(usuarioAtualizacaoDto.getCep());
+      }
+      if (usuario.getSexo() == null) {
+        usuario.setSexo(usuarioAtualizacaoDto.getSexo());
+      }
+      if (usuario.getBuscaAvaliacao() == null) {
+        usuario.setBuscaAvaliacao(usuarioAtualizacaoDto.getBuscaAvaliacao());
+      }
+      if (usuario.getAssinaStreaming() == null) {
+        usuario.setAssinaStreaming(usuarioAtualizacaoDto.getAssinaStreaming());
+      }
+      if (usuario.getAparelhoUtilizado() == null) {
+        usuario.setAparelhoUtilizado(usuarioAtualizacaoDto.getAparelhoUtilizado());
+      }
+      if (usuario.getQtdFrequencia() == null) {
+        usuario.setQtdFrequencia(usuarioAtualizacaoDto.getQtdFrequencia());
+      }
+      if (usuario.getGeneroPreferido() == null) {
+        usuario.setGeneroPreferido(usuarioAtualizacaoDto.getGeneroPreferido());
+      }
+
+      usuarioRepository.save(usuario);
+    } else {
+      // Lidar com o caso em que o usuário não foi encontrado
+      throw new IllegalArgumentException("Usuário não encontrado");
+    }
   }
   
   public void  atualizar(Long id, Usuario usuarioAtualizar){

@@ -12,7 +12,13 @@ public class UsuarioMapper {
     usuario.setEmail(usuarioCriacaoDto.getEmail());
     usuario.setNome(usuarioCriacaoDto.getNome());
     usuario.setSenha(usuarioCriacaoDto.getSenha());
-    usuario.setDataNasc(usuarioCriacaoDto.getDataNasc());
+    usuario.setCep(usuarioCriacaoDto.getCep());
+    usuario.setSexo(usuarioCriacaoDto.getSexo());
+    usuario.setAparelhoUtilizado(usuarioCriacaoDto.getAparelhoUtilizado());
+    usuario.setBuscaAvaliacao(usuarioCriacaoDto.getBuscaAvaliacao());
+    usuario.setGeneroPreferido(usuarioCriacaoDto.getGeneroPreferido());
+    usuario.setQtdFrequencia(usuarioCriacaoDto.getQtdFrequencia());
+    usuario.setAssinaStreaming(usuarioCriacaoDto.getAssinaStreaming());
 //    usuario.setFilmeLista(usuarioCriacaoDto.getFilmeLista());
 
     return usuario;

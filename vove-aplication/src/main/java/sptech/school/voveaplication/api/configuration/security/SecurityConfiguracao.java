@@ -58,7 +58,8 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/tmdb/**"),
             new AntPathRequestMatcher("/listas/**"),
             new AntPathRequestMatcher("/filmes/**"),
-            new AntPathRequestMatcher("/votacao/**")
+            new AntPathRequestMatcher("/votacao/**"),
+            new AntPathRequestMatcher("/txt/**")
 
     };
 
