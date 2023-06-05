@@ -68,7 +68,7 @@ public class ListaController {
     @CrossOrigin
     @GetMapping("/minhas-listas")
     public ResponseEntity<List<String>> minhasListas(@RequestParam Long idUsuario){
-        List<String> listas = listaTabelaRepository.findListasByUsuarioId(idUsuario);
+        List<String> listas = this.listaRepository.findListasByUsuarioId(idUsuario);
         return ResponseEntity.status(200).body(listas);
     }
 
