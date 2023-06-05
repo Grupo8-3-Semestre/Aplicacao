@@ -9,6 +9,8 @@ public class Lista {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomeDaLista;
+    @ManyToOne
+    private Usuario usuario;
 
     public Long getId() {
         return id;
@@ -26,5 +28,11 @@ public class Lista {
         this.nomeDaLista = nomeDaLista;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

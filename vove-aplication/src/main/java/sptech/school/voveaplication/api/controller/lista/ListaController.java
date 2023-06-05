@@ -35,6 +35,7 @@ public class ListaController {
     @PostMapping
     public ResponseEntity<Lista> criarLista(@RequestBody Lista lista, @RequestParam Long idUsuario){
         Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow(() -> new OpenApiResourceNotFoundException("Usuário não encontrado"));
+        lista.setUsuario(usuario);
         Lista novaLista = listaRepository.save(lista);
         return ResponseEntity.status(201).body(novaLista);
     }
