@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import sptech.school.voveaplication.api.controller.tmdb.TmdbController;
+import sptech.school.voveaplication.api.controller.votacao.VotacaoController;
 import sptech.school.voveaplication.domain.comentario.Comentario;
 import sptech.school.voveaplication.domain.filme.dto.FilmeDtoResultado;
 import sptech.school.voveaplication.domain.filme.dto.FilmesDasListasInfosDto;
@@ -140,7 +142,9 @@ public class ListaController {
         for(int i = 0; i < minhaLista.size(); i++){
 
             Integer idFilme = minhaLista.get(i).getTmdbIdFilme();
-            float avaliacao = tmdbMovies.getMovie(idFilme, "pt-br").getVoteAverage();
+            String mediaUrl = "http://localhost:8080/votacao?tmdbId=" + idFilme; // Substitua pela URL correta do endpoint
+            ResponseEntity<Double> response = new RestTemplate().getForEntity(mediaUrl, Double.class);
+            Double avaliacao = response.getBody();
             String ondeAssistir = TmdbController.getOndeAssistir(idFilme);
             String nomeFilme = tmdbMovies.getMovie(idFilme, "pt-br").getTitle();
             String genero = TmdbController.getGenero(idFilme);

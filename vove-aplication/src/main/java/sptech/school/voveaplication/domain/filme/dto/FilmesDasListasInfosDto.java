@@ -2,7 +2,7 @@ package sptech.school.voveaplication.domain.filme.dto;
 
 public class FilmesDasListasInfosDto {
 
-    private float avaliacao;
+    private Double avaliacao;
     private String ondeAssistir;
     private String nomeFilme;
     private String genero;
@@ -10,7 +10,7 @@ public class FilmesDasListasInfosDto {
     private Integer duracaoFilme;
     private String poster;
 
-    public FilmesDasListasInfosDto(float avaliacao, String ondeAssistir, String nomeFilme, String genero, String lancamento, Integer duracaoFilme, String poster) {
+    public FilmesDasListasInfosDto(Double avaliacao, String ondeAssistir, String nomeFilme, String genero, String lancamento, Integer duracaoFilme, String poster) {
         this.avaliacao = avaliacao;
         this.ondeAssistir = ondeAssistir;
         this.nomeFilme = nomeFilme;
@@ -20,11 +20,11 @@ public class FilmesDasListasInfosDto {
         this.poster = poster;
     }
 
-    public float getAvaliacao() {
+    public Double getAvaliacao() {
         return avaliacao;
     }
 
-    public void setAvaliacao(float avaliacao) {
+    public void setAvaliacao(Double avaliacao) {
         this.avaliacao = avaliacao;
     }
 
