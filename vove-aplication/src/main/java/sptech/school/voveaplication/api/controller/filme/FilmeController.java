@@ -8,7 +8,9 @@ import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import sptech.school.voveaplication.domain.comentario.Comentario;
 import sptech.school.voveaplication.domain.comentario.repository.ComentarioRepository;
 import sptech.school.voveaplication.domain.filme.dto.FilmeDtoResultado;
@@ -152,7 +154,9 @@ public class FilmeController {
             String posterPath = tmdbMovies.getMovie(idFilme, "pt-br").getPosterPath();
             String nomeFilme = tmdbMovies.getMovie(idFilme, "pt-br").getTitle();
             String comentario = todosComentarios.get(i).getDescricao();
-            float notaGeral = tmdbMovies.getMovie(idFilme, "pt-br").getVoteAverage();
+            String mediaUrl = "http://localhost:8080/votacao?tmdbId=" + idFilme; // Substitua pela URL correta do endpoint
+            ResponseEntity<Double> response = new RestTemplate().getForEntity(mediaUrl, Double.class);
+            Double notaGeral = response.getBody();
             Boolean spoiler = todosComentarios.get(i).getSpoiler();
 
             FilmeDtoResultado filmeDto = new FilmeDtoResultado(nomeUsuario,idFilme, posterPath, nomeFilme, comentario, notaGeral, spoiler);

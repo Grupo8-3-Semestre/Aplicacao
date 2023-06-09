@@ -6,10 +6,10 @@ public class FilmeDtoResultado {
     private String posterPath;
     private String nomeFilme;
     private String comentario;
-    private float notaGeral;
+    private Double notaGeral;
     private Boolean spoiler;
 
-    public FilmeDtoResultado(String nomeUsuario, Integer idFilme, String posterPath, String nomeFilme, String comentario, float notaGeral, Boolean spoiler) {
+    public FilmeDtoResultado(String nomeUsuario, Integer idFilme, String posterPath, String nomeFilme, String comentario, Double notaGeral, Boolean spoiler) {
         this.nomeUsuario = nomeUsuario;
         this.idFilme = idFilme;
         this.posterPath = posterPath;
@@ -59,11 +59,11 @@ public class FilmeDtoResultado {
         this.comentario = comentario;
     }
 
-    public float getNotaGeral() {
+    public Double getNotaGeral() {
         return notaGeral;
     }
 
-    public void setNotaGeral(float notaGeral) {
+    public void setNotaGeral(Double notaGeral) {
         this.notaGeral = notaGeral;
     }
 
