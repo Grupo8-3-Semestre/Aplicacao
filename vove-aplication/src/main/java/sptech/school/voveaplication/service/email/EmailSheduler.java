@@ -34,7 +34,7 @@ public class EmailSheduler {
         filaMensagens.insert(mensagem5);
     }
 
-    @Scheduled(cron = "*/10 * * * * *")
+    @Scheduled(cron = "0 55 00 ? * SUN")
     public void enviarEmailAgendado() {
         String proximaMensagem = filaMensagens.poll();
 

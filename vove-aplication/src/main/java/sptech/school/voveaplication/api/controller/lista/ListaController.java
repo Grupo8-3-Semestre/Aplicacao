@@ -2,14 +2,17 @@ package sptech.school.voveaplication.api.controller.lista;
 
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
+import info.movito.themoviedbapi.model.MovieDb;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springdoc.api.OpenApiResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+import sptech.school.voveaplication.api.controller.tmdb.TmdbController;
 import sptech.school.voveaplication.domain.comentario.Comentario;
 import sptech.school.voveaplication.domain.filme.dto.FilmeDtoResultado;
+import sptech.school.voveaplication.domain.filme.dto.FilmesDasListasInfosDto;
 import sptech.school.voveaplication.domain.lista.Lista;
 import sptech.school.voveaplication.domain.lista.ListaDtoResposta;
 import sptech.school.voveaplication.domain.lista.ListaTabela;
@@ -19,6 +22,7 @@ import sptech.school.voveaplication.domain.usuario.Usuario;
 import sptech.school.voveaplication.domain.usuario.repository.UsuarioRepository;
 import sptech.school.voveaplication.service.pilhaobj.PilhaObj;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -122,6 +126,33 @@ public class ListaController {
         ListaTabela filmeRemovido = (ListaTabela) pilhaDeFilmesRemovidos.desempilhar();
         ListaTabela filmeSalvoNovamente = listaTabelaRepository.save(filmeRemovido);
         return ResponseEntity.status(200).body(filmeSalvoNovamente);
+    }
+
+    @CrossOrigin
+    @GetMapping("filmes-da-lista-info")
+    public List<FilmesDasListasInfosDto> filmesDaMinhaLista(@RequestParam Long idUsuario, @RequestParam Long idLista) throws IOException {
+        TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
+
+        List<ListaTabela> minhaLista = listaTabelaRepository.findByUsuarioIdAndListaFilmeId(idUsuario, idLista);
+
+        List<FilmesDasListasInfosDto> FilmesDoUsuarioDessaLista = new ArrayList<>();
+
+        for(int i = 0; i < minhaLista.size(); i++){
+
+            Integer idFilme = minhaLista.get(i).getTmdbIdFilme();
+            float avaliacao = tmdbMovies.getMovie(idFilme, "pt-br").getVoteAverage();
+            String ondeAssistir = TmdbController.getOndeAssistir(idFilme);
+            String nomeFilme = tmdbMovies.getMovie(idFilme, "pt-br").getTitle();
+            String genero = TmdbController.getGenero(idFilme);
+            String lancamento = tmdbMovies.getMovie(idFilme, "pt-br").getReleaseDate();
+            Integer duracaoFilme = TmdbController.getTempo(idFilme);
+            String poster = tmdbMovies.getMovie(idFilme, "pt-br").getPosterPath();
+
+            FilmesDasListasInfosDto filmeDto = new FilmesDasListasInfosDto(avaliacao, ondeAssistir, nomeFilme,genero, lancamento,
+                    duracaoFilme, poster);
+            FilmesDoUsuarioDessaLista.add(filmeDto);
+        }
+        return FilmesDoUsuarioDessaLista;
     }
 
 
