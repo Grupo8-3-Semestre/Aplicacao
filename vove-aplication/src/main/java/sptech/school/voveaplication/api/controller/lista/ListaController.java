@@ -153,7 +153,7 @@ public class ListaController {
             String poster = tmdbMovies.getMovie(idFilme, "pt-br").getPosterPath();
 
             FilmesDasListasInfosDto filmeDto = new FilmesDasListasInfosDto(avaliacao, ondeAssistir, nomeFilme,genero, lancamento,
-                    duracaoFilme, poster);
+                    duracaoFilme,idFilme, poster);
             FilmesDoUsuarioDessaLista.add(filmeDto);
         }
         return FilmesDoUsuarioDessaLista;

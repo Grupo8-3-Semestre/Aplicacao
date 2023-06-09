@@ -8,15 +8,17 @@ public class FilmesDasListasInfosDto {
     private String genero;
     private String lancamento;
     private Integer duracaoFilme;
+    private Integer tmdbIdFilme;
     private String poster;
 
-    public FilmesDasListasInfosDto(Double avaliacao, String ondeAssistir, String nomeFilme, String genero, String lancamento, Integer duracaoFilme, String poster) {
+    public FilmesDasListasInfosDto(Double avaliacao, String ondeAssistir, String nomeFilme, String genero, String lancamento, Integer duracaoFilme, Integer tmdbIdFilme, String poster) {
         this.avaliacao = avaliacao;
         this.ondeAssistir = ondeAssistir;
         this.nomeFilme = nomeFilme;
         this.genero = genero;
         this.lancamento = lancamento;
         this.duracaoFilme = duracaoFilme;
+        this.tmdbIdFilme = tmdbIdFilme;
         this.poster = poster;
     }
 
@@ -66,6 +68,14 @@ public class FilmesDasListasInfosDto {
 
     public void setDuracaoFilme(Integer duracaoFilme) {
         this.duracaoFilme = duracaoFilme;
+    }
+
+    public Integer getTmdbIdFilme() {
+        return tmdbIdFilme;
+    }
+
+    public void setTmdbIdFilme(Integer tmdbIdFilme) {
+        this.tmdbIdFilme = tmdbIdFilme;
     }
 
     public String getPoster() {
