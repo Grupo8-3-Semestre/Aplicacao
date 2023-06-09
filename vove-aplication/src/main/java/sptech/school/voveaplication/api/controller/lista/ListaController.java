@@ -1,11 +1,17 @@
 package sptech.school.voveaplication.api.controller.lista;
 
+import info.movito.themoviedbapi.TmdbApi;
+import info.movito.themoviedbapi.TmdbMovies;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springdoc.api.OpenApiResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+import sptech.school.voveaplication.domain.comentario.Comentario;
+import sptech.school.voveaplication.domain.filme.dto.FilmeDtoResultado;
 import sptech.school.voveaplication.domain.lista.Lista;
+import sptech.school.voveaplication.domain.lista.ListaDtoResposta;
 import sptech.school.voveaplication.domain.lista.ListaTabela;
 import sptech.school.voveaplication.domain.lista.repository.ListaRepository;
 import sptech.school.voveaplication.domain.lista.repository.ListaTabelaRepository;
@@ -13,12 +19,14 @@ import sptech.school.voveaplication.domain.usuario.Usuario;
 import sptech.school.voveaplication.domain.usuario.repository.UsuarioRepository;
 import sptech.school.voveaplication.service.pilhaobj.PilhaObj;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/listas")
 @SecurityRequirement(name = "Bearer")
+@Service
 public class ListaController {
 
     @Autowired
@@ -65,12 +73,28 @@ public class ListaController {
         List<ListaTabela> minhaLista = listaTabelaRepository.findByUsuarioIdAndListaFilmeId(idUsuario, idLista);
         return ResponseEntity.status(200).body(minhaLista);
     }
+
     @CrossOrigin
     @GetMapping("/minhas-listas")
-    public ResponseEntity<List<String>> minhasListas(@RequestParam Long idUsuario){
-        List<String> listas = this.listaRepository.findListasByUsuarioId(idUsuario);
-        return ResponseEntity.status(200).body(listas);
+    public List<ListaDtoResposta> minhasListas(@RequestParam Long idUsuario) {
+
+
+        List<Lista> todasAsListas = listaRepository.findAll();
+
+        List<ListaDtoResposta> listaDeDto = new ArrayList<>();
+
+        for(int i = 8; i < todasAsListas.size(); i++){
+            if(todasAsListas.get(i).getUsuario().getId().equals(idUsuario)){
+                Long idLista = todasAsListas.get(i).getId();
+                String nomeLista = todasAsListas.get(i).getNomeDaLista();
+
+                ListaDtoResposta respostaDto = new ListaDtoResposta(idLista,nomeLista);
+                listaDeDto.add(respostaDto);
+            }
+        }
+        return listaDeDto;
     }
+
 
     @CrossOrigin
     @DeleteMapping
@@ -99,6 +123,8 @@ public class ListaController {
         ListaTabela filmeSalvoNovamente = listaTabelaRepository.save(filmeRemovido);
         return ResponseEntity.status(200).body(filmeSalvoNovamente);
     }
+
+
 
 
 }

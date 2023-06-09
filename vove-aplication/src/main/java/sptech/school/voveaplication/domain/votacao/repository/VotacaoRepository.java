@@ -9,7 +9,9 @@ import java.util.Optional;
 public interface VotacaoRepository extends JpaRepository<Votacao, Long> {
 
 
-    Optional<Votacao> findByUsuarioId(Long idUsuario);
+//    Optional<Votacao> findByUsuarioIdAndtmdbIdFilme(Long idUsuario, Integer tmdbIdFilme);
+    Optional<Votacao> findByUsuarioIdAndTmdbIdFilme(Long idUsuario, Integer tmdbIdFilme);
+
 
     @Query("SELECT AVG(e.avaliacao) FROM Votacao e WHERE e.tmdbIdFilme = :tmdbId")
     Double mediaDeVotos(Integer tmdbId);

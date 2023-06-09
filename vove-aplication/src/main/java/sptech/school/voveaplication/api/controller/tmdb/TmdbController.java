@@ -194,12 +194,11 @@ import java.util.List;
         return null;
     }
     @CrossOrigin
-    @GetMapping("nome/{moveId}")
-    public static String getNome(int movieId) throws IOException {
+    @GetMapping("nome/{movieId}")
+    public static String getNome(@PathVariable int movieId) throws IOException {
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
 
-         return tmdbMovies.getMovie(movieId,"pt-br").getTitle();
-
+        return tmdbMovies.getMovie(movieId, "pt-br").getTitle();
     }
     @CrossOrigin
     @GetMapping("poster/{moveId}")
@@ -212,13 +211,10 @@ import java.util.List;
     }
 
     @CrossOrigin
-    @GetMapping("backdrop/{moveId}")
-    public static String getBackDrop(int movieId) throws IOException {
-
+    @GetMapping("backdrop/{movieId}")
+    public static String getBackDrop(@PathVariable int movieId) throws IOException {
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
-
-        return tmdbMovies.getMovie(movieId,"pt-br").getBackdropPath();
-
+        return tmdbMovies.getMovie(movieId, "pt-br").getBackdropPath();
     }
 
     @CrossOrigin
@@ -277,14 +273,10 @@ import java.util.List;
     }
 
     @CrossOrigin
-    @GetMapping("sinopse/{moveId}")
-    public static String getSinopse(int movieId) throws IOException {
-
+    @GetMapping("sinopse/{movieId}")
+    public static String getSinopse(@PathVariable int movieId) throws IOException {
         TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
-
-        return tmdbMovies.getMovie(movieId,"pt-br").getOverview();
-
-
+        return tmdbMovies.getMovie(movieId, "pt-br").getOverview();
     }
 
 

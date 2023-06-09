@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sptech.school.voveaplication.domain.comentario.Comentario;
+import sptech.school.voveaplication.domain.comentario.repository.ComentarioRepository;
 import sptech.school.voveaplication.domain.usuario.Usuario;
 import sptech.school.voveaplication.domain.usuario.repository.UsuarioRepository;
 import sptech.school.voveaplication.domain.votacao.Votacao;
@@ -25,6 +26,9 @@ public class VotacaoController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private ComentarioRepository comentarioRepository;
+
 
     @CrossOrigin
     @PostMapping("/votos")
@@ -33,11 +37,18 @@ public class VotacaoController {
         voto.setUsuario(usuario);
         voto.setTmdbIdFilme(tmdbId);
 
-        Optional<Votacao> votoExistente = votacaoRepository.findByUsuarioId(voto.getUsuario().getId());
+        Optional<Votacao> votoExistente = votacaoRepository.findByUsuarioIdAndTmdbIdFilme(voto.getUsuario().getId(), voto.getTmdbIdFilme());
 
         if (votoExistente.isPresent()) {
             Votacao votoAtualizado = votoExistente.get();
             votoAtualizado.setAvaliacao(voto.getAvaliacao());
+            Integer votoParaSalvarNoComentario = votoAtualizado.getAvaliacao();
+
+            Comentario comentario = comentarioRepository.findByUsuarioIdAndTmdbIdFilme(voto.getUsuario().getId(), voto.getTmdbIdFilme())
+                    .orElseThrow(() -> new OpenApiResourceNotFoundException("Comentário não encontrado"));
+
+            comentario.setAvaliacao(votoParaSalvarNoComentario);
+            comentarioRepository.save(comentario);
             votacaoRepository.save(votoAtualizado);
         } else {
             votacaoRepository.save(voto);
