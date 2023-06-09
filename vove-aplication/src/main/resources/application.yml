@@ -1,0 +1,15 @@
+spring:
+  mail:
+    host: smtp.example.com
+    port: 587
+    username: cacaucontrol@gmail.com
+    password: ntycmjdvgycojaly
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  thymeleaf:
+    prefix: classpath:/template/
+    suffix: .html

@@ -17,7 +17,9 @@ public class EmailController {
     @CrossOrigin
     @PostMapping("/enviar")
     public ResponseEntity<String> enviarEmail(@RequestParam String para,@RequestParam String assunto,@RequestParam String conteudo) {
-        emailService.enviarEmail(para, assunto, conteudo);
+
+//        emailService.enviarEmail();
+//        emailService.enviarEmail(para, assunto, conteudo, templateContext);
         return ResponseEntity.status(200).body("Email enviado");
     }
 }
