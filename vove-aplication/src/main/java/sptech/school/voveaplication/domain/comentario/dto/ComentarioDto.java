@@ -5,25 +5,24 @@ package sptech.school.voveaplication.domain.comentario.dto;
 public class ComentarioDto {
 
 
-    private String nome;
+    private String nomeUsuario;
     private Integer avaliacao;
     private String descricao;
     private Boolean spoiler;
 
-
-    public ComentarioDto(String nome, Integer avaliacao, String descricao, Boolean spoiler) {
-        this.nome = nome;
+    public ComentarioDto(String nomeUsuario, Integer avaliacao, String descricao, Boolean spoiler) {
+        this.nomeUsuario = nomeUsuario;
         this.avaliacao = avaliacao;
         this.descricao = descricao;
         this.spoiler = spoiler;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
     public Integer getAvaliacao() {

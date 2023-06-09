@@ -7,13 +7,18 @@ import org.springdoc.api.OpenApiResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import sptech.school.voveaplication.api.controller.tmdb.TmdbController;
 import sptech.school.voveaplication.domain.comentario.dto.ComentarioDto;
 import sptech.school.voveaplication.domain.comentario.repository.ComentarioRepository;
 import sptech.school.voveaplication.domain.comentario.Comentario;
 import sptech.school.voveaplication.domain.filme.dto.FilmeDtoResultado;
+import sptech.school.voveaplication.domain.filme.dto.FilmesDasListasInfosDto;
+import sptech.school.voveaplication.domain.lista.ListaTabela;
 import sptech.school.voveaplication.domain.usuario.Usuario;
 import sptech.school.voveaplication.domain.usuario.repository.UsuarioRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -77,16 +82,26 @@ public class ComentarioController {
         }
         return ResponseEntity.status(404).build();
     }
+    @CrossOrigin
+    @GetMapping("ultimos-comentario-filme/{idFilme}")
+    public List<ComentarioDto> ultimosComentariosDoFilme(@PathVariable Integer idFilme) {
+        TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
 
-//    @CrossOrigin
-//    @GetMapping("ultimos-comentario-filme/{idFilme}")
-//    public List<ComentarioDto> ultimosComentariosFilme(@PathVariable Integer idFilme) {
-//        TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
-//
-//        List<ComentarioDto> comentarioDtos = comentarioRepository.informacoesFilmeComentario(idFilme);
-//
-//        return comentarioDtos;
-//    }
+        List<Comentario> todosComentarios = comentarioRepository.findAll();
 
+        List<ComentarioDto> comentariosDoFilme = new ArrayList<>();
 
+        for(int i = 0; i < todosComentarios.size(); i++){
+            if(todosComentarios.get(i).getTmdbIdFilme().equals(idFilme)){
+                String nomeUsuario = todosComentarios.get(i).getUsuario().getNome();
+                Integer avaliacao = todosComentarios.get(i).getAvaliacao();
+                String descricao = todosComentarios.get(i).getDescricao();
+                Boolean spoiler = todosComentarios.get(i).getSpoiler();
+
+                ComentarioDto comentarioDto = new ComentarioDto(nomeUsuario, avaliacao,descricao,spoiler);
+                comentariosDoFilme.add(comentarioDto);
+            }
+        }
+        return comentariosDoFilme;
+    }
 }
