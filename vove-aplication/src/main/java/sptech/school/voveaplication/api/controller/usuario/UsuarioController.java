@@ -81,7 +81,7 @@ public class UsuarioController {
     }
 
     @CrossOrigin
-    @PutMapping("/{id}/alterar-senha")
+    @PutMapping("/alterar-senha/{id}")
     public ResponseEntity<Void> alterarSenha(@PathVariable Long id, @RequestParam String novaSenha) {
         this.usuarioService.alterarSenha(id, novaSenha);
         return ResponseEntity.status(200).build();
@@ -93,7 +93,6 @@ public class UsuarioController {
 
         this.usuarioService.deletar(id);
         return ResponseEntity.status(204).build();
-
 
     }
 

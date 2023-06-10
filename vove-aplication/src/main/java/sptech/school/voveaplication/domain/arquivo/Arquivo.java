@@ -13,7 +13,7 @@ public class Arquivo {
     private String nomeArquivoOriginal;
     private String nomeArquivoSalvo;
     @Lob
-    @Column(name = "dados")
+    @Column(name = "dados", length = 31457280) // 30MB (30 * 1024 * 1024 bytes)
     private byte[] dados;
     private LocalDate dataUpload;
 
