@@ -1,6 +1,11 @@
 package sptech.school.voveaplication.domain.usuario;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -30,8 +35,12 @@ public class Usuario {
   @Size(min = 8, max = 255)
   @Schema(example= "Senha complicada")
   private String senha;
+
+  @JsonDeserialize(using = LocalDateDeserializer.class)
+  @JsonSerialize(using = LocalDateSerializer.class)
   @PastOrPresent
-  @Schema(name= "data de nascimento", example = "2001-12-04")
+  @Schema(name= "data de nascimento")
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private LocalDate dataNasc;
   private Boolean aceitaEmail;
 

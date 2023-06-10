@@ -84,18 +84,17 @@ public class UsuarioService {
   }
   
   public void  atualizar(Long id, Usuario usuarioAtualizar){
-    String senhaCriptografada = passwordEncoder.encode(usuarioAtualizar.getSenha());
-    usuarioAtualizar.setSenha(senhaCriptografada);
+//    String senhaCriptografada = passwordEncoder.encode(usuarioAtualizar.getSenha());
+//    usuarioAtualizar.setSenha(senhaCriptografada);
 
 
     Optional<Usuario> usuario = usuarioRepository.findById(id);
     if (usuario.isPresent()) {
+      Usuario usuarioSalvo = usuario.get();
       usuarioAtualizar.setId(id);
-      Usuario usuarioSalvo = usuarioRepository.save(usuarioAtualizar);
-    } 
-
-    
-    
+      usuarioAtualizar.setSenha(usuarioSalvo.getSenha());
+      Usuario usuarioAtualizado = usuarioRepository.save(usuarioAtualizar);
+    }
   }
 
 

@@ -63,6 +63,15 @@ public class UsuarioController {
     }
 
     @CrossOrigin
+    @GetMapping("/buscarPorId")
+    public ResponseEntity<Optional<Usuario>> buscarPorId(@RequestParam long id) {
+
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+
+        return ResponseEntity.status(200).body(usuario);
+    }
+
+    @CrossOrigin
     @PostMapping("/deslogar/{usuarioId}")
     public ResponseEntity<Void> deslogarUsuario(@PathVariable Long usuarioId) {
         this.usuarioService.deslogar(usuarioId);
@@ -70,7 +79,7 @@ public class UsuarioController {
     }
 
     @CrossOrigin
-    @PutMapping("/id")
+    @PutMapping()
     public ResponseEntity<Void> atualizar(@RequestParam Long id,@RequestBody Usuario usuarioAtualizar) {
 
         this.usuarioService.atualizar(id, usuarioAtualizar);
