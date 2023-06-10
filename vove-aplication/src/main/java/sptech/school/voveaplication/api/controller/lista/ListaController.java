@@ -104,9 +104,9 @@ public class ListaController {
 
     @CrossOrigin
     @DeleteMapping
-    public ResponseEntity<Void> removerFilme(@RequestParam Long idusuario, @RequestParam Long idLista, @RequestParam int tmdbIdFilme){
+    public ResponseEntity<Void> removerFilme(@RequestParam Long idUsuario, @RequestParam Long idLista, @RequestParam int tmdbIdFilme){
         Optional<ListaTabela> filmeProcurado = listaTabelaRepository.findByTmdbIdFilmeAndListaFilmeId(tmdbIdFilme, idLista);
-        if(idusuario == filmeProcurado.get().getUsuario().getId()) {
+        if(idUsuario == filmeProcurado.get().getUsuario().getId()) {
             if (filmeProcurado.isPresent()) {
                 if(pilhaDeFilmesRemovidos.cheia()){
                     ResponseEntity.status(404).body("Pilha cheia");

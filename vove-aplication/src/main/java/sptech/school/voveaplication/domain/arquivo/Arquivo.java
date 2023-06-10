@@ -15,7 +15,7 @@ public class Arquivo {
     private String nomeArquivoSalvo;
 
     @Lob
-    @Column(name = "dados") // 30MB (30 * 1024 * 1024 bytes)
+    @Column(name = "dados", length = 31457280) // 30MB (30 * 1024 * 1024 bytes)
     private byte[] dados;
 
     private LocalDate dataUpload;

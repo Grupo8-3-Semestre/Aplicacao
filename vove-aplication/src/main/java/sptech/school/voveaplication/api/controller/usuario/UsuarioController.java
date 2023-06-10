@@ -43,6 +43,7 @@ public class UsuarioController {
         return ResponseEntity.status(201).build();
     }
 
+
     @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<UsuarioTokenDto> login(@RequestBody UsuarioLoginDto usuarioLoginDto) {
@@ -89,12 +90,18 @@ public class UsuarioController {
     }
 
     @CrossOrigin
+    @PutMapping("/alterar-senha/{id}")
+    public ResponseEntity<Void> alterarSenha(@PathVariable Long id, @RequestParam String novaSenha) {
+        this.usuarioService.alterarSenha(id, novaSenha);
+        return ResponseEntity.status(200).build();
+    }
+
+    @CrossOrigin
     @DeleteMapping("/id")
     public ResponseEntity<Void> deletar(@RequestParam Long id) {
 
         this.usuarioService.deletar(id);
         return ResponseEntity.status(204).build();
-
 
     }
 

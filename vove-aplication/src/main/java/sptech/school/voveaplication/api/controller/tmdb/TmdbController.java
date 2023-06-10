@@ -149,8 +149,8 @@ import java.util.List;
     }
 
     @CrossOrigin
-    @GetMapping("onde-assistir/{moveId}")
-    public static String getOndeAssistir(int movieId) throws IOException {
+    @GetMapping("/onde-assistir/{movieId}")     
+    public static String getOndeAssistir(@PathVariable int movieId) throws IOException {
         String apiKey = "d34024db77b2cdff5b20917cc5ddae3f";
 
         // Faz a requisição à API do TMDB e obtém a resposta com a lista de provedores de streaming
