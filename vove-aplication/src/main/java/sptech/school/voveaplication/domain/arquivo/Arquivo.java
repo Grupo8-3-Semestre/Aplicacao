@@ -10,11 +10,14 @@ public class Arquivo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nomeArquivoOriginal;
     private String nomeArquivoSalvo;
+
     @Lob
-    @Column(name = "dados")
+    @Column(name = "dados") // 30MB (30 * 1024 * 1024 bytes)
     private byte[] dados;
+
     private LocalDate dataUpload;
 
     public Long getId() {
@@ -39,6 +42,17 @@ public class Arquivo {
 
     public void setNomeArquivoSalvo(String nomeArquivoSalvo) {
         this.nomeArquivoSalvo = nomeArquivoSalvo;
+    }
+
+    public byte[] getDados() {
+        return dados;
+    }
+
+    public void setDados(byte[] dados) {
+        if (dados.length > 31457280) {
+            throw new IllegalArgumentException("Tamanho do arquivo excede o limite de 30MB.");
+        }
+        this.dados = dados;
     }
 
     public LocalDate getDataUpload() {

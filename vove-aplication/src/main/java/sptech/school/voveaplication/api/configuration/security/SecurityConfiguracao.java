@@ -54,6 +54,7 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/usuarios/**"),
             new AntPathRequestMatcher("/comentarios/**"),
             new AntPathRequestMatcher("/arquivos/**"),
+            new AntPathRequestMatcher("/arquivos/upload/**"),
             new AntPathRequestMatcher("/emails/**"),
             new AntPathRequestMatcher("/tmdb/**"),
             new AntPathRequestMatcher("/listas/**"),
@@ -120,7 +121,7 @@ public class SecurityConfiguracao {
     private CorsConfiguration buildCorsConfiguration() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOriginPatterns(Collections.singletonList(ORIGENS_PERMITIDAS));
+        configuration.addAllowedOriginPattern(ORIGENS_PERMITIDAS);
         configuration.setAllowedMethods(
                 Arrays.asList(
                         HttpMethod.GET.name(),
@@ -132,4 +133,5 @@ public class SecurityConfiguracao {
         configuration.setAllowedHeaders(Arrays.asList(HttpHeaders.CONTENT_TYPE, HttpHeaders.AUTHORIZATION));
         return configuration;
     }
+
 }

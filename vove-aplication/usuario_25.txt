@@ -1,0 +1,162 @@
+00DadosUsuario2023110-06-2023 15:31:4401
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:35:1201
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:40:5901
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:42:5101
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:45:2101
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:45:4201
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:46:3601
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:51:1401
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:51:1801
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:51:2201
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:53:4201
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:54:2001
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 15:59:5201
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:03:0201
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:26:0501
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:27:4401
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:28:4301
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:28:4701
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:28:5001
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:28:5101
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:28:5201
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:28:5201
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:28:5301
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:28:5301
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:36:5601
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:36:5901
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:38:4801
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:39:1201
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:39:3201
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:39:3701
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:39:4701
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:39:4801
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:39:5001
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:39:5101
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:43:5401
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:44:1501
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:44:1701
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:44:1801
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:49:1601
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:50:5901
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:53:4701
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:53:5101
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 16:54:3901
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 17:01:1401
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 17:01:1901
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 17:01:2201
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 17:39:3901
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 17:39:4301
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 17:39:4601
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 17:39:5001
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 17:39:5301
+02teste006                                          2004-09-25null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 18:16:0601
+02teste006                                          2004-09-22null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 20:27:3501
+02teste666                                          2004-09-21null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 20:27:3801
+02teste666                                          2004-09-21null      teste06@gmail.com                      nullnull                nulnullnulnull                
+010000000001

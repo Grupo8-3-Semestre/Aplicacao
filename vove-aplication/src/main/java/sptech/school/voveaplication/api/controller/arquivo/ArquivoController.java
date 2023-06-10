@@ -2,6 +2,7 @@ package sptech.school.voveaplication.api.controller.arquivo;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,7 +11,9 @@ import sptech.school.voveaplication.domain.arquivo.Arquivo;
 import sptech.school.voveaplication.domain.arquivo.repository.ArquivoRepository;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,42 +26,48 @@ public class ArquivoController {
     @Autowired
     private ArquivoRepository arquivoRepository;
 
-    private Path diretorioBase = Path.of(System.getProperty("java.io.tmpdir") + "/arquivos");
+    private Path diretorioBase = Paths.get(System.getProperty("java.io.tmpdir"), "arquivos");
 
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/upload")
-    public ResponseEntity<Arquivo> upload(@RequestParam("arquivo") MultipartFile file) {
-
-        if (file.isEmpty()){
-            return ResponseEntity.status(400).build();
+    public ResponseEntity<Arquivo> upload(@RequestParam("image") MultipartFile image) {
+        if (image.isEmpty()) {
+            return ResponseEntity.badRequest().build();
         }
 
-        if (!this.diretorioBase.toFile().exists()) {
-            this.diretorioBase.toFile().mkdir();
-        }
-
-        String nomeArquivoFormatado = formatarNomeArquivo(file.getOriginalFilename());
-
-        String filePath = this.diretorioBase + "/" + nomeArquivoFormatado;
-        File dest = new File(filePath);
         try {
-            file.transferTo(dest);
+            if (!Files.exists(this.diretorioBase)) {
+                Files.createDirectories(this.diretorioBase);
+            }
+
+            String nomeArquivoFormatado = formatarNomeArquivo(image.getOriginalFilename());
+
+            Path filePath = Paths.get(this.diretorioBase.toString(), nomeArquivoFormatado);
+            image.transferTo(filePath.toFile());
+
+            Arquivo arquivo = new Arquivo();
+            arquivo.setDataUpload(LocalDate.now());
+            arquivo.setNomeArquivoOriginal(image.getOriginalFilename());
+            arquivo.setNomeArquivoSalvo(nomeArquivoFormatado);
+
+            // Gerar a URL da imagem com base na URL base do servidor e no ID do arquivo
+            String imageUrl = "http://localhost:8080/arquivos/" + arquivo.getId();
+            arquivo.setUrlImagem(imageUrl);
+
+            Arquivo arquivoBanco = arquivoRepository.save(arquivo);
+
+            return ResponseEntity.ok(arquivoBanco);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new ResponseStatusException(422, "Não foi possível salvar o arquivo", null);
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Não foi possível salvar o arquivo", e);
         }
-
-        Arquivo arquivo = new Arquivo();
-        arquivo.setDataUpload(LocalDate.now());
-        arquivo.setNomeArquivoOriginal(file.getOriginalFilename());
-        arquivo.setNomeArquivoSalvo(nomeArquivoFormatado);
-        Arquivo arquivoBanco = arquivoRepository.save(arquivo);
-
-        return ResponseEntity.status(200).body(arquivoBanco);
     }
+
+
+
     @CrossOrigin
     @GetMapping("/download/{id}")
-    public ResponseEntity<byte[]> download(@PathVariable Long id){
+    public ResponseEntity<byte[]> download(@PathVariable Long id) {
         Optional<Arquivo> arquivoOptional = arquivoRepository.findById(id);
 
         if (arquivoOptional.isEmpty()) {
@@ -83,6 +92,7 @@ public class ArquivoController {
             throw new ResponseStatusException(422, "Não foi possível converter para byte[]", null);
         }
     }
+
     @CrossOrigin
     private String formatarNomeArquivo(String nomeOriginal) {
         return String.format("%s_%s", UUID.randomUUID(), nomeOriginal);
