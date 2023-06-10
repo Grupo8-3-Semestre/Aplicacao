@@ -82,6 +82,19 @@ public class UsuarioService {
       throw new IllegalArgumentException("Usuário não encontrado");
     }
   }
+
+  public void alterarSenha(Long id, String novaSenha) {
+    Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+
+    if (optionalUsuario.isPresent()) {
+      Usuario usuario = optionalUsuario.get();
+      String senhaCriptografada = passwordEncoder.encode(novaSenha);
+      usuario.setSenha(senhaCriptografada);
+      usuarioRepository.save(usuario);
+    } else {
+      throw new IllegalArgumentException("Usuário não encontrado");
+    }
+  }
   
   public void  atualizar(Long id, Usuario usuarioAtualizar){
     String senhaCriptografada = passwordEncoder.encode(usuarioAtualizar.getSenha());
