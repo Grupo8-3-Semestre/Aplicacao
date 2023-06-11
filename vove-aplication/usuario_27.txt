@@ -1,0 +1,18 @@
+00DadosUsuario2023110-06-2023 20:58:5301
+02JaqueGata                                         2003-07-16null      jaqueline.o.amorim@accenture.com       nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 20:58:5601
+02JaqueGata                                         2003-07-16null      jaqueline.o.amorim@accenture.com       nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 20:58:5901
+02JaqueGata                                         2003-07-16null      jaqueline.o.amorim@accenture.com       nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 20:59:0401
+02JaqueGata                                         2003-07-16null      jaqueline.o.amorim@accenture.com       nullnull                nulnullnulnull                
+010000000001
+00DadosUsuario2023110-06-2023 21:00:2201
+02JaqueGata                                         2003-07-16F         jaqueline.o.amorim@accenture.com   00512000Drama               tru05truCelular             
+010000000001
+00DadosUsuario2023110-06-2023 21:00:3201
+02JaqueGata                                         2003-07-16F         jaqueline.o.amorim@accenture.com   00512000Drama               tru05truCelular             
+010000000001

@@ -50,10 +50,6 @@ public class ArquivoController {
             arquivo.setNomeArquivoOriginal(image.getOriginalFilename());
             arquivo.setNomeArquivoSalvo(nomeArquivoFormatado);
 
-            // Gerar a URL da imagem com base na URL base do servidor e no ID do arquivo
-            String imageUrl = "http://localhost:8080/arquivos/" + arquivo.getId();
-            arquivo.setUrlImagem(imageUrl);
-
             Arquivo arquivoBanco = arquivoRepository.save(arquivo);
 
             return ResponseEntity.ok(arquivoBanco);
