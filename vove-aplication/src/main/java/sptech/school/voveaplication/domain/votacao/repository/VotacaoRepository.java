@@ -11,6 +11,7 @@ public interface VotacaoRepository extends JpaRepository<Votacao, Long> {
 
 //    Optional<Votacao> findByUsuarioIdAndtmdbIdFilme(Long idUsuario, Integer tmdbIdFilme);
     Optional<Votacao> findByUsuarioIdAndTmdbIdFilme(Long idUsuario, Integer tmdbIdFilme);
+    Optional<Votacao> findByUsuarioId(Long id);
 
 
     @Query("SELECT AVG(e.avaliacao) FROM Votacao e WHERE e.tmdbIdFilme = :tmdbId")

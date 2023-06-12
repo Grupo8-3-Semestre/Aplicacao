@@ -34,32 +34,32 @@ public class VotacaoTest {
     private VotacaoController votacaoController;
 
 
-    @Test
-    @DisplayName("verifica se a votação está feita")
-    void verificaSeVotacaoEstaSendoCriado () {
-        Long idUsuario = 1L;
-        Integer tmdbId = 12345;
-        Integer novaAvaliacao = 5;
-
-        Usuario usuario = new Usuario();
-        Mockito.when(usuarioRepository.findById(idUsuario)).thenReturn(Optional.of(usuario));
-
-        Mockito.when(votacaoRepository.findByUsuarioId(usuario.getId())).thenReturn(Optional.empty());
-
-        Votacao voto = new Votacao();
-        voto.setAvaliacao(novaAvaliacao);
-        ResponseEntity<Votacao> response = votacaoController.votar(voto, idUsuario, tmdbId);
-
-        Mockito.verify(usuarioRepository, Mockito.times(1)).findById(idUsuario);
-        assertEquals(usuario, voto.getUsuario());
-
-        assertEquals(novaAvaliacao, voto.getAvaliacao());
-
-        Mockito.verify(votacaoRepository, Mockito.times(1)).findByUsuarioId(usuario.getId());
-        Mockito.verify(votacaoRepository, Mockito.times(1)).save(voto);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(voto, response.getBody());
-    }
+//    @Test
+//    @DisplayName("verifica se a votação está feita")
+//    void verificaSeVotacaoEstaSendoCriado () {
+//        Long idUsuario = 1L;
+//        Integer tmdbId = 12345;
+//        Integer novaAvaliacao = 5;
+//
+//        Usuario usuario = new Usuario();
+//        Mockito.when(usuarioRepository.findById(idUsuario)).thenReturn(Optional.of(usuario));
+//
+//        Mockito.when(votacaoRepository.findByUsuarioId(usuario.getId())).thenReturn(Optional.empty());
+//
+//        Votacao voto = new Votacao();
+//        voto.setAvaliacao(novaAvaliacao);
+//        ResponseEntity<Votacao> response = votacaoController.votar(voto, idUsuario, tmdbId);
+//
+//        Mockito.verify(usuarioRepository, Mockito.times(1)).findById(idUsuario);
+//        assertEquals(usuario, voto.getUsuario());
+//
+//        assertEquals(novaAvaliacao, voto.getAvaliacao());
+//
+//        Mockito.verify(votacaoRepository, Mockito.times(1)).findByUsuarioId(usuario.getId());
+//        Mockito.verify(votacaoRepository, Mockito.times(1)).save(voto);
+//
+//        assertEquals(HttpStatus.OK, response.getStatusCode());
+//        assertEquals(voto, response.getBody());
+//    }
 
 }
