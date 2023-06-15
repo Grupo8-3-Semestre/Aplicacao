@@ -34,11 +34,11 @@ public class EmailSheduler {
         filaMensagens.insert(mensagem5);
     }
 
-    @Scheduled(cron = "0 0/30 * ? * * *")
+    @Scheduled(cron = "0 * * * * *")
     public void enviarEmailAgendado() {
         String proximaMensagem = filaMensagens.poll();
 
-        String para = "jaqueline.amorim@sptech.school";
+        String para = "joao.barbosa@boxdelivery.com.br";
         String assunto = "Filmes populares da semana";
         String templateName = "email-template.html";
 
