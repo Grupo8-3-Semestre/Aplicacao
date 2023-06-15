@@ -142,7 +142,7 @@ public class ListaController {
         for(int i = 0; i < minhaLista.size(); i++){
 
             Integer idFilme = minhaLista.get(i).getTmdbIdFilme();
-            String mediaUrl = "http://localhost:8080/votacao?tmdbId=" + idFilme; // Substitua pela URL correta do endpoint
+            String mediaUrl = "https://vove-aplication-1686536532334.azurewebsites.net/votacao?tmdbId=" + idFilme; // Substitua pela URL correta do endpoint
             ResponseEntity<Double> response = new RestTemplate().getForEntity(mediaUrl, Double.class);
             Double avaliacao = response.getBody();
             String ondeAssistir = TmdbController.getOndeAssistir(idFilme);
