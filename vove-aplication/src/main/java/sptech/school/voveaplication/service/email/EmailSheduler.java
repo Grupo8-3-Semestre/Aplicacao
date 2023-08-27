@@ -38,7 +38,7 @@ public class EmailSheduler {
     public void enviarEmailAgendado() {
         String proximaMensagem = filaMensagens.poll();
 
-        String para = "joao.barbosa@boxdelivery.com.br";
+        String para = "jaqueline.amorim@sptech.school";
         String assunto = "Filmes populares da semana";
         String templateName = "email-template.html";
 

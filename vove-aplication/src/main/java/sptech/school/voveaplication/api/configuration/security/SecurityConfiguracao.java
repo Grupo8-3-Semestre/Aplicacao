@@ -60,7 +60,8 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/listas/**"),
             new AntPathRequestMatcher("/filmes/**"),
             new AntPathRequestMatcher("/votacao/**"),
-            new AntPathRequestMatcher("/txt/**")
+            new AntPathRequestMatcher("/txt/**"),
+            new AntPathRequestMatcher("/h2-console/**")
 
     };
 
