@@ -89,7 +89,7 @@ public class ListaController {
 
         List<ListaDtoResposta> listaDeDto = new ArrayList<>();
 
-        for(int i = 8; i < todasAsListas.size(); i++){
+        for(int i = 0; i < todasAsListas.size(); i++){
             if(todasAsListas.get(i).getUsuario().getId().equals(idUsuario)){
                 Long idLista = todasAsListas.get(i).getId();
                 String nomeLista = todasAsListas.get(i).getNomeDaLista();
@@ -142,7 +142,8 @@ public class ListaController {
         for(int i = 0; i < minhaLista.size(); i++){
 
             Integer idFilme = minhaLista.get(i).getTmdbIdFilme();
-            String mediaUrl = "https://vove-aplication-1686536532334.azurewebsites.net/votacao?tmdbId=" + idFilme; // Substitua pela URL correta do endpoint
+            //String mediaUrl = "4.5"; //"https://vove-aplication-1686536532334.azurewebsites.net/votacao?tmdbId=" + idFilme; //Substitua pela URL correta do endpoint
+            String mediaUrl = "http://localhost:8080/votacao?tmdbId=" + idFilme;
             ResponseEntity<Double> response = new RestTemplate().getForEntity(mediaUrl, Double.class);
             Double avaliacao = response.getBody();
             String ondeAssistir = TmdbController.getOndeAssistir(idFilme);

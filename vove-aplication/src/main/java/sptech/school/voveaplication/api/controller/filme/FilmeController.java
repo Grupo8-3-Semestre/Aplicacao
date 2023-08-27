@@ -154,7 +154,8 @@ public class FilmeController {
             String posterPath = tmdbMovies.getMovie(idFilme, "pt-br").getPosterPath();
             String nomeFilme = tmdbMovies.getMovie(idFilme, "pt-br").getTitle();
             String comentario = todosComentarios.get(i).getDescricao();
-            String mediaUrl = "https://vove-aplication-1686536532334.azurewebsites.net/votacao?tmdbId=" + idFilme; // Substitua pela URL correta do endpoint
+//            String mediaUrl = "https://vove-aplication-1686536532334.azurewebsites.net/votacao?tmdbId=" + idFilme; // Substitua pela URL correta do endpoint
+            String mediaUrl = "http://localhost:8080/votacao?tmdbId=" + idFilme;
             ResponseEntity<Double> response = new RestTemplate().getForEntity(mediaUrl, Double.class);
             Double notaGeral = response.getBody();
             Boolean spoiler = todosComentarios.get(i).getSpoiler();
