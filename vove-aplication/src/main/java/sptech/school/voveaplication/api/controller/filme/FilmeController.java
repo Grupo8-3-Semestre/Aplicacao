@@ -138,6 +138,35 @@ public class FilmeController {
         return filmeList;
     }
 
+//    @CrossOrigin
+//    @GetMapping("testeDto")
+//    public List<FilmeDtoResultado> retornarVariasInfoDoFilme() {
+//        TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));
+//
+//        List<Comentario> todosComentarios = comentarioRepository.findAll();
+//
+//        List<FilmeDtoResultado> listaDeDto = new ArrayList<>();
+//
+//        for(int i = 0; i < todosComentarios.size(); i++){
+//
+//            String nomeUsuario = todosComentarios.get(i).getUsuario().getNome();
+//            Integer idFilme = todosComentarios.get(i).getTmdbIdFilme();
+//            String posterPath = tmdbMovies.getMovie(idFilme, "pt-br").getPosterPath();
+//            String nomeFilme = tmdbMovies.getMovie(idFilme, "pt-br").getTitle();
+//            String comentario = todosComentarios.get(i).getDescricao();
+////            String mediaUrl = "https://vove-aplication-1686536532334.azurewebsites.net/votacao?tmdbId=" + idFilme; // Substitua pela URL correta do endpoint
+//            String mediaUrl = "http://localhost:8080/votacao?tmdbId=" + idFilme;
+//            ResponseEntity<Double> response = new RestTemplate().getForEntity(mediaUrl, Double.class);
+//            Double notaGeral = response.getBody();
+//            Boolean spoiler = todosComentarios.get(i).getSpoiler();
+//
+//            FilmeDtoResultado filmeDto = new FilmeDtoResultado(nomeUsuario,idFilme, posterPath, nomeFilme, comentario, notaGeral, spoiler);
+//            listaDeDto.add(filmeDto);
+//        }
+//        return listaDeDto;
+//    }
+
+
     @CrossOrigin
     @GetMapping("testeDto")
     public List<FilmeDtoResultado> retornarVariasInfoDoFilme() {
@@ -147,7 +176,7 @@ public class FilmeController {
 
         List<FilmeDtoResultado> listaDeDto = new ArrayList<>();
 
-        for(int i = 0; i < todosComentarios.size(); i++){
+        for(int i = todosComentarios.size()-1; i >=0; i--){
 
             String nomeUsuario = todosComentarios.get(i).getUsuario().getNome();
             Integer idFilme = todosComentarios.get(i).getTmdbIdFilme();
@@ -165,6 +194,9 @@ public class FilmeController {
         }
         return listaDeDto;
     }
+
+
+
 }
 
 
