@@ -1,4 +1,4 @@
-package sptech.school.voveaplication.domain.arquivo.repository;
+package sptech.school.voveaplication.domain.arquivo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
