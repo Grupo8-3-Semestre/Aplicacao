@@ -14,6 +14,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
   Optional<Usuario> findByEmail(String email);
 
 
+  boolean existsByEmail(String email);
+
   @Query("SELECT u FROM Usuario u WHERE u.id = :id AND u.logado = true")
   Optional<Usuario> findUsuarioLogadoById(Long id);
 

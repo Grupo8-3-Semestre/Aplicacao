@@ -43,7 +43,7 @@ public class Usuario {
   @JsonFormat(pattern = "yyyy-MM-dd")
   private LocalDate dataNasc;
   private Boolean aceitaEmail;
-
+  private String fotoPerfil; // Caminho para a foto de perfil no servidor
   private String sexo;
   private Integer cep;
   private String generoPreferido;
@@ -61,6 +61,14 @@ public class Usuario {
 
   public boolean isLogado() {
     return logado;
+  }
+
+  public String getFotoPerfil() {
+    return fotoPerfil;
+  }
+
+  public void setFotoPerfil(String fotoPerfil) {
+    this.fotoPerfil = fotoPerfil;
   }
 
   public void setLogado(boolean logado) {
