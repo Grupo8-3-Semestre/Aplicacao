@@ -7,18 +7,13 @@ import org.springdoc.api.OpenApiResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import sptech.school.voveaplication.api.controller.tmdb.TmdbController;
 import sptech.school.voveaplication.domain.comentario.dto.ComentarioDto;
 import sptech.school.voveaplication.domain.comentario.repository.ComentarioRepository;
 import sptech.school.voveaplication.domain.comentario.Comentario;
-import sptech.school.voveaplication.domain.filme.dto.FilmeDtoResultado;
-import sptech.school.voveaplication.domain.filme.dto.FilmesDasListasInfosDto;
-import sptech.school.voveaplication.domain.lista.ListaTabela;
 import sptech.school.voveaplication.domain.usuario.Usuario;
 import sptech.school.voveaplication.domain.usuario.repository.UsuarioRepository;
+import sptech.school.voveaplication.service.filtroComentario.FiltroComentario;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,12 +28,18 @@ public class ComentarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    private FiltroComentario filtro;
+
+
     @CrossOrigin
     @PostMapping()
     public ResponseEntity<Comentario> Criar(@RequestBody Comentario novoComentario, @RequestParam Long id, @RequestParam Integer tmdbId){
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new OpenApiResourceNotFoundException("Usuário não encontrado"));
         novoComentario.setUsuario(usuario);
         novoComentario.setTmdbIdFilme(tmdbId);
+
+        FiltroComentario.filtrarPalavroes(novoComentario);
+
         Comentario comentarioSalvo = comentarioRepository.save(novoComentario);
         return ResponseEntity.status(201).body(comentarioSalvo);
     }
