@@ -95,6 +95,12 @@ public class UsuarioController {
         this.usuarioService.alterarSenha(id, novaSenha);
         return ResponseEntity.status(200).build();
     }
+    @CrossOrigin
+    @PutMapping("/alterar-nome/{id}")
+    public ResponseEntity<Void> alterarNome(@PathVariable Long id, @RequestParam String novoNome) {
+        this.usuarioService.alterarNome(id, novoNome);
+        return ResponseEntity.status(200).build();
+    }
 
     @CrossOrigin
     @DeleteMapping("/id")
