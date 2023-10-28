@@ -96,17 +96,7 @@ public class UsuarioService {
     }
   }
 
-  public void alterarNome(Long id, String novoNome) {
-    Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
 
-    if (optionalUsuario.isPresent()) {
-      Usuario usuario = optionalUsuario.get();
-      usuario.setNome(novoNome);
-      usuarioRepository.save(usuario);
-    } else {
-      throw new IllegalArgumentException("Usuário não encontrado");
-    }
-  }
   
   public void  atualizar(Long id, Usuario usuarioAtualizar){
 //    String senhaCriptografada = passwordEncoder.encode(usuarioAtualizar.getSenha());
