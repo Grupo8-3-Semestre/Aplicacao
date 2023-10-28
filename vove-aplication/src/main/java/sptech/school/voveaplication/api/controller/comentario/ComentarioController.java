@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/comentarios")
+@RequestMapping("/api/comentarios")
 @SecurityRequirement(name = "Bearer")
 public class ComentarioController {
     @Autowired

@@ -109,7 +109,17 @@ public class UsuarioService {
       Usuario usuarioAtualizado = usuarioRepository.save(usuarioAtualizar);
     }
   }
+  public void alterarNome(Long id, String novoNome) {
+    Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
 
+    if (optionalUsuario.isPresent()) {
+      Usuario usuario = optionalUsuario.get();
+      usuario.setNome(novoNome);
+      usuarioRepository.save(usuario);
+    } else {
+      throw new IllegalArgumentException("Usuário não encontrado");
+    }
+  }
 
   public void  deletar(Long id){
     Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);

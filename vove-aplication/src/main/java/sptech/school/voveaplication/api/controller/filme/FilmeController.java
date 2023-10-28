@@ -23,7 +23,7 @@ import java.util.List;
 
 @Tag(name = "Filmes", description = "Requisicoes relacionadas a filmes")
 @RestController
-@RequestMapping("/filmes")
+@RequestMapping("/api/filmes")
 @SecurityRequirement(name = "Bearer")
 public class FilmeController {
 

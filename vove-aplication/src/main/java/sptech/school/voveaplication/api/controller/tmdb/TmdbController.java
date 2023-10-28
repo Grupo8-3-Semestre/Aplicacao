@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tmdb")
+@RequestMapping("/api/tmdb")
 @SecurityRequirement(name = "Bearer")
     public class TmdbController {
     private TmdbMovies tmdbMovies = new TmdbMovies(new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f"));

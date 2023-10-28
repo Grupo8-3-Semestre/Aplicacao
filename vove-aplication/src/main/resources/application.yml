@@ -13,3 +13,12 @@ spring:
   thymeleaf:
     prefix: classpath:/template/
     suffix: .html
+
+server:
+  ssl:
+    key-store: classpath:vove.p12
+    key-store-password: senha
+    key-store-type: pkcs12
+    key-alias: 1
+    key-password: senha
+  port: 8443

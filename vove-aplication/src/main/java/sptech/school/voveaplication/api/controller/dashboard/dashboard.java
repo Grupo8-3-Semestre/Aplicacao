@@ -19,7 +19,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/dashboard")
+@RequestMapping("/api/dashboard")
 @SecurityRequirement(name = "Bearer")
 public class dashboard {
 

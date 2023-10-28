@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/listas")
+@RequestMapping("/api/listas")
 @SecurityRequirement(name = "Bearer")
 @Service
 public class ListaController {

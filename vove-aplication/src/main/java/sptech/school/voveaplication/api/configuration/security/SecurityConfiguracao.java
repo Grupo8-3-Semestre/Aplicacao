@@ -36,7 +36,9 @@ public class SecurityConfiguracao {
     @Autowired
     private AutenticacaoEntryPoint autenticacaoJwtEntryPoint;
 
+
     private static final AntPathRequestMatcher[] URLS_PERMITIDAS = {
+            new AntPathRequestMatcher("/**"),
             new AntPathRequestMatcher("/swagger-ui/**"),
             new AntPathRequestMatcher("/swagger-ui.html"),
             new AntPathRequestMatcher("/swagger-resources"),
@@ -67,8 +69,9 @@ public class SecurityConfiguracao {
     };
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.headers()
+    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .headers()
                 .frameOptions().disable()
                 .and()
                 .cors()
@@ -76,11 +79,10 @@ public class SecurityConfiguracao {
                 .and()
                 .csrf()
                 .disable()
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers(URLS_PERMITIDAS)
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated()
-                )
+                .authorizeHttpRequests()
+                .requestMatchers(URLS_PERMITIDAS).permitAll()
+                .anyRequest().authenticated()
+                .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(autenticacaoJwtEntryPoint)
                 .and()
@@ -88,6 +90,18 @@ public class SecurityConfiguracao {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+
+    @Bean
+    public SecurityFilterChain customSecurityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .requiresChannel()
+                .anyRequest().requiresSecure()
+                .and()
+                .authorizeHttpRequests()
+                .anyRequest().permitAll();
 
         return http.build();
     }
@@ -135,5 +149,8 @@ public class SecurityConfiguracao {
         configuration.setAllowedHeaders(Arrays.asList(HttpHeaders.CONTENT_TYPE, HttpHeaders.AUTHORIZATION));
         return configuration;
     }
+
+
+
 
 }

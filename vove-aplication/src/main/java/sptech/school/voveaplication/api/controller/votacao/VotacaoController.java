@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/votacao")
+@RequestMapping("/api/votacao")
 @SecurityRequirement(name = "Bearer")
 public class VotacaoController {
 

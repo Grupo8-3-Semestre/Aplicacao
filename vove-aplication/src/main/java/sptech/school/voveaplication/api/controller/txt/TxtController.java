@@ -24,7 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/txt")
+@RequestMapping("/api/txt")
 @SecurityRequirement(name = "Bearer")
 public class TxtController {
    @Autowired

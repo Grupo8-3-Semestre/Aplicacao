@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import sptech.school.voveaplication.service.email.EmailService;
 
 @RestController
-@RequestMapping("emails")
+@RequestMapping("/api/emails")
 @SecurityRequirement(name = "Bearer")
 public class EmailController {
 

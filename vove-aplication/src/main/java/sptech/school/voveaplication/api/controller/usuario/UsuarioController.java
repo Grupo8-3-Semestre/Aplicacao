@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 @SecurityRequirement(name = "Bearer")
 public class UsuarioController {
 
@@ -34,7 +34,12 @@ public class UsuarioController {
         this.usuarioService.criar(usuarioCriacaoDto);
         return ResponseEntity.status(201).build();
     }
-
+    @CrossOrigin
+    @PutMapping("/alterar-nome/{id}")
+    public ResponseEntity<Void> alterarNome(@PathVariable Long id, @RequestParam String novoNome) {
+        this.usuarioService.alterarNome(id, novoNome);
+        return ResponseEntity.status(200).build();
+    }
     @CrossOrigin
     @PostMapping("completar/{id}")
     public ResponseEntity<Void> completarCadastro (@RequestBody @Valid UsuarioAtualizacaoDto usuarioCriacaoDto, @PathVariable Long id){
