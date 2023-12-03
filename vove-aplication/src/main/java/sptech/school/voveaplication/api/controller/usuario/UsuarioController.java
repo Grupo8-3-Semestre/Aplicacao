@@ -31,8 +31,13 @@ public class UsuarioController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity<Void> criar(@RequestBody @Valid UsuarioCriacaoDto usuarioCriacaoDto) {
+        boolean usuarioJaExistente = usuarioRepository.existsByEmail(usuarioCriacaoDto.getEmail());
+
+        if(usuarioJaExistente){
+            return ResponseEntity.status(422).build();
+        } else {
         this.usuarioService.criar(usuarioCriacaoDto);
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(201).build();}
     }
     @CrossOrigin
     @PutMapping("/alterar-nome/{id}")

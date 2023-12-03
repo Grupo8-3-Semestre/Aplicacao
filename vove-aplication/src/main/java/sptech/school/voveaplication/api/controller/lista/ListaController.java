@@ -66,7 +66,7 @@ public class ListaController {
         boolean filmeJaExistente = listaTabelaRepository.existsByUsuarioIdAndListaFilmeIdAndTmdbIdFilme(idUsuario, idLista,
                 novoFilmeDaLista.getTmdbIdFilme());
             if(filmeJaExistente) {
-                return ResponseEntity.status(404).build();
+                return ResponseEntity.status(422).build();
             }else{
                 ListaTabela filmeSalvo = listaTabelaRepository.save(novoFilmeDaLista);
                 return ResponseEntity.status(200).body(filmeSalvo);
@@ -143,7 +143,7 @@ public class ListaController {
 
             Integer idFilme = minhaLista.get(i).getTmdbIdFilme();
             //String mediaUrl = "4.5"; //"https://vove-aplication-1686536532334.azurewebsites.net/votacao?tmdbId=" + idFilme; //Substitua pela URL correta do endpoint
-            String mediaUrl = "http://localhost:8080/votacao?tmdbId=" + idFilme;
+            String mediaUrl = "https://vovefilme.ddns.net/api/votacao?tmdbId=" + idFilme;
             ResponseEntity<Double> response = new RestTemplate().getForEntity(mediaUrl, Double.class);
             Double avaliacao = response.getBody();
             String ondeAssistir = TmdbController.getOndeAssistir(idFilme);

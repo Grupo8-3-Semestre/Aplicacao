@@ -9,7 +9,7 @@ import sptech.school.voveaplication.service.csv.GravarOuLerArquivoCSV;
 import sptech.school.voveaplication.service.listaobj.ListaObj;
 
 @SpringBootApplication
-public class VoveAplicationApplication {
+public class 	VoveAplicationApplication {
 	private TmdbMovies movie;
 
 	public static void main(String[] args)  {

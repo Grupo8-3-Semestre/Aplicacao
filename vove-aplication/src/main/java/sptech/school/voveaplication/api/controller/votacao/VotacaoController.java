@@ -59,7 +59,11 @@ public class VotacaoController {
     @CrossOrigin
     @GetMapping()
     public ResponseEntity<Double> Media(@RequestParam Integer tmdbId){
-        Double mediaDeVotos = votacaoRepository.mediaDeVotos(tmdbId);
+        Double mediaDeVotos = comentarioRepository.mediaDeVotos(tmdbId);
+        if (mediaDeVotos == null){
+            return ResponseEntity.status(200).body(0.0);
+        }
+
         return ResponseEntity.status(200).body(mediaDeVotos);
     }
 }

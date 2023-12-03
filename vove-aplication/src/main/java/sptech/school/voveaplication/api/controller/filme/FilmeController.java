@@ -165,7 +165,12 @@ public class FilmeController {
 //        }
 //        return listaDeDto;
 //    }
-
+@CrossOrigin
+@GetMapping("/detalhes/{tmdbId}")
+public MovieDb obterDetalhesFilme(@PathVariable Integer tmdbId) {
+    TmdbApi tmdbApi = new TmdbApi("d34024db77b2cdff5b20917cc5ddae3f");
+    return tmdbApi.getMovies().getMovie(tmdbId, "pt-br");
+}
 
     @CrossOrigin
     @GetMapping("testeDto")
@@ -184,7 +189,7 @@ public class FilmeController {
             String nomeFilme = tmdbMovies.getMovie(idFilme, "pt-br").getTitle();
             String comentario = todosComentarios.get(i).getDescricao();
 //            String mediaUrl = "https://vove-aplication-1686536532334.azurewebsites.net/votacao?tmdbId=" + idFilme; // Substitua pela URL correta do endpoint
-            String mediaUrl = "http://localhost:8080/votacao?tmdbId=" + idFilme;
+            String mediaUrl = "https://vovefilme.ddns.net/api/votacao?tmdbId=" + idFilme;
             ResponseEntity<Double> response = new RestTemplate().getForEntity(mediaUrl, Double.class);
             Double notaGeral = response.getBody();
             Boolean spoiler = todosComentarios.get(i).getSpoiler();
